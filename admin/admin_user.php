@@ -42,7 +42,7 @@
                                             <td><?php echo $row['username']; ?> </td>
                                             <td><?php echo $row['email']; ?> </td>
                                             <td>
-                                                <a href="#delete_admin<?php echo $row['admin_id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
+                                                <a href="#edit_admin<?php echo $row['admin_id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
                                                 <?php include('admin_modal.php');?>
                                             </td>
                                        </tr>

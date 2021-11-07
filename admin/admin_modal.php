@@ -31,11 +31,16 @@ if(!isset($_SESSION['ADMIN']))
                                                             <div class="form-group">
                                                                 
                                                                 <input type="text" class="form-control" name="f_name" value="<?php echo  $row['fullname']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <div class="form-group">
                                                                 <input type="text" class="form-control" name="u_name" value="<?php echo  $row['username']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <div class="form-group">
                                                                 <input type="text" class="form-control" name="email" value="<?php echo  $row['email']?>">
-                                                                <!-- <input type="hidden" class="form-control" name="cat_id" value="<?php echo $row['id'];?>"> -->
-                                                                <!-- <input type="hidden" class="form-control" name="cat_name" value="<?php echo $cat_name;?>" > -->
-                                                                
                                                             </div>
                                                         </div>
                                                     </div>

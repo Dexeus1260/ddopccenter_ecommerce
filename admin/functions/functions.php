@@ -386,4 +386,71 @@ function u_login(){
         }
     }
 }
+
+// reg user
+function register()
+{
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn_register']))
+    {
+        global $con;
+        $fullname = safe_value($con,$_POST['fullname']);
+        $username = safe_value($con,$_POST['username']);
+        $email = safe_value($con,$_POST['email']);
+        $address = safe_value($con,$_POST['address']);
+        $number = safe_value($con,$_POST['number']);
+        $password_tmp = safe_value($con,$_POST['password_tmp']);
+        $password = safe_value($con,$_POST['password']);
+
+        if($password_tmp == $password)
+        {
+            $sql = "select * from users where fullname = '$fullname' || email = '$email'";
+            $res = mysqli_query($con,$sql);
+
+            if(mysqli_fetch_assoc($res))
+            {
+                set_message(display_error('User already registered!'));
+            }
+            elseif(strlen((string)$number) == 11 && is_numeric($number))
+            {
+                set_message(display_error('Incorrect phone number.'));
+            }
+            else
+            {
+                
+                $query ="insert into users (fullname,username,email,address,mobile,password) values ('$fullname', '$username', '$email','$address', '$number', '$password')";
+                $result = mysqli_query($con,$query);
+
+                if($result)
+                {
+                    echo '<script>alert("Registered successfully!"); location.href="user_login.php";</script>';
+                }else
+                {
+                    set_message(display_error('mali.'));
+                }
+            }
+
+        }
+        else
+        {
+            set_message(display_error('Password does not match!'));
+            // echo '<script>alert("Password does not match!"); location.href="user_register.php";</script>';
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

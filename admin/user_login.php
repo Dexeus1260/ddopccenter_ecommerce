@@ -1,8 +1,10 @@
-<?php require_once 'php_files/header.php'; 
+<?php require_once 'php_files/header.php'; ?>
 
-if(isset($_SESSION['USER'])){
-    header("location: dashboard.php");
-}
+<?php
+
+// if(isset($_SESSION['USER'])){
+//     header("location: dashboard.php");
+// }
 
 ?>
 
@@ -24,7 +26,7 @@ if(isset($_SESSION['USER'])){
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Admin!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome User!</h1>
                                     </div>
                                     <?php login();display_message();?>
                                     <form class="user" method="POST">
@@ -37,16 +39,22 @@ if(isset($_SESSION['USER'])){
                                             <input type="password"  class="form-control form-control-user" required 
                                                 name="password" placeholder="Password" >
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                        <div class="form-group ">
+                                                <div class="custom-control custom-checkbox small">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                    <label class="custom-control-label" for="customCheck">Remember
+                                                        Me</label>
+                                                </div>
                                             </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary btn-user btn-block" name="btn_Ulogin">
+                                                Login
+                                            </button>   
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" name="btn_Ulogin">
-                                            Login
-                                        </button>
+                                        
+                                        <div class="form-group">                                   
+                                              <a href="user_register.php" style="font-size: 15px;"><label>Sign up here!</label></a>
+                                        </div>
                                        
                                     </form>
                                     

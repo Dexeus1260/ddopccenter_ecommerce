@@ -15,7 +15,7 @@
        
 
       
-            $up = "update admin set fullname = '$n_fName', username = '$n_uNname', email = '$n_email'  where brand_id = '$id'";
+            $up = "update admin set fullname = '$n_fName', username = '$n_uNname', email = '$n_email'  where admin_id = '$id'";
             $res = mysqli_query($con,$up);
 
             if($res){
