@@ -2,9 +2,9 @@
 
 <?php
 
-// if(isset($_SESSION['USER'])){
-//     header("location: dashboard.php");
-// }
+if(isset($_SESSION['USER'])){
+    header("location: user_landing.php");
+}
 
 ?>
 
@@ -28,12 +28,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome User!</h1>
                                     </div>
-                                    <?php login();display_message();?>
+                                    <?php u_login();display_message();?>
                                     <form class="user" method="POST">
                                         <div class="form-group">
                                             <input type="text"  class="form-control form-control-user"
                                                 name="username" aria-describedby="userHelp" required 
-                                                placeholder="Enter Username" >
+                                                placeholder="Enter Username or Email" >
                                         </div>
                                         <div class="form-group">
                                             <input type="password"  class="form-control form-control-user" required 

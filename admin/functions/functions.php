@@ -366,21 +366,23 @@ function add_user(){
 }
 }
 //costumer login
-function u_login(){
-
-    if($_SERVER['REQUEST_METHOD'] =='POST' & isset($_POST['btn_Ulogin']))
+function u_login()
+{
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn_Ulogin']))
     {
+        set_message(display_error("ok"));
+     
         global $con;
-        $username = safe_value($con,$_POST['username']);
-        $password = safe_value($con,$_POST['password']);
+        $user = safe_value($con,$_POST['username']);
+        $pass = safe_value($con,$_POST['password']);
 
-        $query = "select * from admin where username like '$username' and password like '$password'  or email LIKE '$username' and password LIKE '$password' ";
-        $result = mysqli_query($con,$query);
+        $q = "select * from users where username like '$user' and password like '$pass'  or email LIKE '$user' and password LIKE '$pass' ";
+        $res = mysqli_query($con,$q);
 
-        if(mysqli_fetch_assoc($result))
+        if($res)
         {
-            $_SESSION['USER'] = $username;
-            header("location: ./dashboard.php");
+            $_SESSION['USER'] = $user;
+            header("location: ./user_landing.php");
         }else{
             set_message(display_error("Incorrect username or password!"));
         }

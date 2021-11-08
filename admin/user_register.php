@@ -14,11 +14,11 @@
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-top:7rem;">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg ">
                     <div class="card-body">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
