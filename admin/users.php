@@ -5,6 +5,8 @@
       {
           header("location: index.php");
       }
+
+      $customer = customer();
 ?>
    
 
@@ -26,44 +28,22 @@
                                             <th>Username</th>
                                             <th>Mobile Number</th>
                                             <th>Address</th>
-                                            <th>Operation</th>
+                                          
                                            
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Category Name</th>
-                                            <th>Status</th>
-                                            <th>Operations</th>
-                                           
-                                        </tr>
-                                    </tfoot> -->
+
                                     <tbody>
-                                        <!-- <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                           
-                                        </tr>
+                                        <?php while($row=mysqli_fetch_assoc($customer)){ ?>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            
-                                        </tr> -->
+                                            <td><?php echo $row['fullname'] ?> </td>
+                                            <td><?php echo $row['username'] ?> </td>
+                                            <td><?php echo $row['mobile'] ?> </td>
+                                            <td><?php echo $row['address'] ?> </td>
                                         
-                                      
+                                        </tr>
                                     </tbody>
+                                    <?php } ?>
                                 </table>
                             </div>
                         </div>

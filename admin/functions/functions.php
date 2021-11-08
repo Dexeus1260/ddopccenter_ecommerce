@@ -412,7 +412,7 @@ function register()
             {
                 set_message(display_error('User already registered!'));
             }
-            elseif(strlen((string)$number) == 11 && is_numeric($number))
+            elseif(strlen((string)$number) != 11 && !is_numeric($number))
             {
                 set_message(display_error('Incorrect phone number.'));
             }
@@ -440,8 +440,14 @@ function register()
     }
 }
 
-
-
+// manage customer
+function customer()
+{
+    global $con;
+    $sql = "select * from users";
+   
+    return  mysqli_query($con,$sql);
+}
 
 
 
