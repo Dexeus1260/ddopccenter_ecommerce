@@ -370,7 +370,7 @@ function u_login()
 {
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['btn_Ulogin']))
     {
-        set_message(display_error("ok"));
+        // set_message(display_error("ok"));
      
         global $con;
         $user = safe_value($con,$_POST['username']);
@@ -379,10 +379,10 @@ function u_login()
         $q = "select * from users where username like '$user' and password like '$pass'  or email LIKE '$user' and password LIKE '$pass' ";
         $res = mysqli_query($con,$q);
 
-        if($res)
+        if(mysqli_fetch_assoc($res))
         {
             $_SESSION['USER'] = $user;
-            header("location: ./user_landing.php");
+            header("location: user_landing.php");
         }else{
             set_message(display_error("Incorrect username or password!"));
         }
