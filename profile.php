@@ -45,10 +45,11 @@
                     <div class="dashboard_tab_button">
                         <ul role="tablist" class="nav flex-column dashboard-list">
                     
-                            <li> <a href="#orders" data-bs-toggle="tab" class="nav-link btn btn-sm btn-default-outline ">Orders</a></li>
+                           
                           
-                            <li><a href="#address" data-bs-toggle="tab" class="nav-link btn btn-sm btn-default-outline ">Addresses</a></li>
-                            <li><a href="#account-details" data-bs-toggle="tab" class="nav-link btn btn-sm btn-default-outline ">Account details</a></li>
+                            <li><a href="#address" data-bs-toggle="tab" class="nav-link btn btn-sm btn-default-outline active">Profile</a></li>
+                            <li> <a href="#orders" data-bs-toggle="tab" class="nav-link btn btn-sm btn-default-outline ">Orders</a></li>
+                           
                             <!-- <li><a href="login.html" class="nav-link btn btn-sm btn-default-outline">logout</a></li> -->
                             <li><a href="#" class="nav-link btn btn-sm btn-default-outline" data-bs-toggle="modal" data-bs-target="#UlogoutModal">Logout</a></li>
                          
@@ -91,66 +92,18 @@
                                 </table>
                             </div>
                         </div>
-                       
-                        <div class="tab-pane" id="address">
-                            <p>The following addresses will be used on the checkout page by default.</p>
-                            <h5 class="billing-address">Billing address</h5>
-                            <a href="#" class="view">Edit</a>
-                            <p><strong>Bobby Jackson</strong></p>
-                            <address>Address: Your address goes here.</address>
-                        </div>
-                        <div class="tab-pane fade" id="account-details">
+                       <?php $cos = customer(); while($row=mysqli_fetch_assoc($cos)){ ?>
+                        <div class="tab-pane active" id="address">
                             <h3>Account details </h3>
-                            <div class="login">
-                                <div class="login_form_container">
-                                    <div class="account_login_form">
-                                        <form action="#">
-                                            <p>Already have an account? <a href="#">Log in instead!</a></p>
-                                            <div class="input-radio">
-                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
-                                                <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
-                                            </div> <br>
-                                            <div class="default-form-box mb-20">
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="birthday">
-                                            </div>
-                                            <span class="example">
-                                                        (E.g.: 05/31/1970)
-                                                        </span>
-                                            <br>
-                                            <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
-                                                <span>Receive offers from our partners</span>
-                                            </label>
-                                            <br>
-                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
-                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</em></span>
-                                            </label>
-                                            <div class="save_button mt-3">
-                                                <button class="btn btn-sm btn-default-outline" type="submit">Save</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            <h5 class="billing-address">Name: <strong><?php echo $row['fullname'] ?></strong></h5>
+                            <h5 class="billing-address">Username: <strong><?php echo $row['username'] ?></strong></h5>
+                            <h5 class="billing-address">Address: <strong><?php echo $row['address'] ?></strong></h5>
+                            <h5 class="billing-address">Mobile: <strong><?php echo $row['mobile'] ?></strong></h5>
+                            <?php } ?>
+                            <a href="#" class="view">Edit</a>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
