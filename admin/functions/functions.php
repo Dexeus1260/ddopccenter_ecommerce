@@ -382,7 +382,7 @@ function u_login()
         if(mysqli_fetch_assoc($res))
         {
             $_SESSION['USER'] = $user;
-            header("location: user_landing.php");
+            header("location: index.php");
         }else{
             set_message(display_error("Incorrect username or password!"));
         }
