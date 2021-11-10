@@ -122,7 +122,7 @@
                            <?php }
                             else{
                                 ?>
-                                <a href="user_login.php" class="header-action-item header-action-wishlist" >LOGIN</a>
+                                <a href="user_login.php" class="header-action-item header-action-wishlist text-white">LOGIN</a>
                            <?php }
                            
                            
@@ -169,8 +169,19 @@
             <div class="d-flex justify-content-center ">
                 <a href="wishlist.html" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-heart-dark.svg" alt=""><span class="count-tag">01</span></a>
                 <a href="cart.html" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-shopping-bag-dark.svg" alt=""></a>
-                <a href="cart.html" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icons8-person-64 dark.png" alt="" height="35" width="35"></a>
             
+                <?php 
+                            if(isset($_SESSION['USER'])){
+                                    ?>
+                                         <a href="profile.php" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icons8-person-64 dark.png" alt="" height="35" width="35"></a>
+                           <?php }
+                            else{
+                                ?>
+                                <a href="user_login.php" class="header-action-item header-action-wishlist text-dark">LOGIN</a>
+                           <?php }
+                           
+                           
+                           ?>             
             </div>
 
             <div class="header-event mobile-search my-5">

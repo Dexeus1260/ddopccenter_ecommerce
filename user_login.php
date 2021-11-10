@@ -50,7 +50,10 @@ if(isset($_SESSION['USER'])){
                     <div class="card-body">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block" style="background: url('admin/img/DDO.png') no-repeat center; background-size: 400px 300px;"></div>
+                            <div class="col-lg-6 d-none d-lg-block mt-4"  >
+                                <a href="index.php"><img src="admin/img/DDO.png" height="300" width="400"></a>
+
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">

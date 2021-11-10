@@ -7,16 +7,16 @@
                     <div class="footer-top">
                         <div class="footer-top-left">
                             <div class="footer-contact-items">
-                                <a class="icon-left" href="tel:+12345678910"><img class="icon-svg" src="assets/images/icons/icon-ios-call-dark.svg" alt="">+123 4567 8910</a>
-                                <a class="icon-left" href="mailto:demo@example.com"><img class="icon-svg" src="assets/images/icons/icon-mail-open-dark.svg" alt="">demo@example.com</a>
+                                <a class="icon-left"><img class="icon-svg" src="assets/images/icons/icon-ios-call-dark.svg" alt="">09563682517</a>
+                                <a class="icon-left" href="mailto:demo@example.com"><img class="icon-svg" src="assets/images/icons/icon-mail-open-dark.svg" alt="">dexterjoshuac@gmail.com</a>
                             </div>
                         </div>
                         <div class="footer-top-right">
                             <div class="footer-social">
-                                <a href="https://www.facebook.com/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icon-facebook-f-dark.svg" alt=""></a>
-                                <a href="https://twitter.com/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icon-twitter-dark.svg" alt=""></a>
-                                <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icon-pinterest-p-dark.svg" alt=""></a>
-                                <a href="https://dribbble.com/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icon-dribbble-dark.svg" alt=""></a>
+                                <a href="https://www.facebook.com/gmlordn1" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icon-facebook-f-dark.svg" alt=""></a>
+                                <a href="https://github.com/Dexeus1260" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/GitHub-Mark-32px.png" alt="" width="22" height="22"> </a>
+                                <a href="https://www.youtube.com/channel/UCbp78VJIDSwXEQ84BBVdanQ/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/104445_video_youtube_icon.png" alt="" width="25" height="25"></a>
+                                <a href="https://dexeustech.blogspot.com/" target="_blank" rel="noopener"><img class="icon-svg" src="assets/images/icons/icons8-blogger-60.png" alt="" width="30" height="30"></a>
                             </div>
                         </div>
                     </div>
