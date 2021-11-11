@@ -25,7 +25,7 @@
         }
 
       
-            $up = "update products set product_name = '$new_prod', description = '$new_des', price = '$new_price', qty = '$new_price' , image = '$image_up' where p_id = '$id'";
+            $up = "update products set product_name = '$new_prod', description = '$new_des', price = '$new_price', qty = '$new_qty' , image = '$image_up' where p_id = '$id'";
             $res = mysqli_query($con,$up);
 
             if($res){

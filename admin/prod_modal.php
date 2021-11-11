@@ -29,7 +29,7 @@ if(!isset($_SESSION['ADMIN']))
                                                     <div class="items-push">
                                                         <div class="col-lg-12 col-xl-12">
                                                             <div class="form-group">
-                                                                
+                                                                <label for="val-username">Product Name</span></label>
                                                                 <input type="text" class="form-control" name="prod_up" value="<?php echo  $row['product_name']?>">
                                                              
                                                             </div>
@@ -37,20 +37,20 @@ if(!isset($_SESSION['ADMIN']))
                                                         <div class="col-lg-12 col-xl-12">
                                                             <div class="form-group">
                                                                 
-                                                                
+                                                            <label for="val-username">Description</span></label>
                                                                 <textarea class="form-control" name="des_up" rows="5" required ><?php echo $row['description']?></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-xl-12">
                                                             <div class="form-group">
-                                                                
+                                                            <label for="val-username">Price</span></label>
                                                                 <input type="text" class="form-control" name="price_up" value="<?php echo  $row['price']?>">
                                                              
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-xl-12">
                                                             <div class="form-group">
-                                                                
+                                                            <label for="val-username">Quantity</span></label>
                                                                 <input type="text" class="form-control" name="qty_up" value="<?php echo  $row['qty']?>">
                                                              
                                                             </div>
@@ -58,7 +58,7 @@ if(!isset($_SESSION['ADMIN']))
                                                        
                                                         <div class="col-lg-12 col-xl-12">
                                                             <div class="form-group">
-                                                                
+                                                             <label for="val-username">Image</span></label>
                                                                 <input type="file" class="form-control" name="image_up">
                                                                 <input type="hidden" class="form-control" name="image_old" value="<?php echo $row['image']?>">
                                                                 <img src="products/<?php echo $row['image'] ?>" width="100%" height="100%" class="mt-3"style="display: block;margin-left: auto;margin-right: auto;"/> 

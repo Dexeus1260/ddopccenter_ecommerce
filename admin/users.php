@@ -26,6 +26,7 @@
                                         <tr>
                                             <th>Full Name</th>
                                             <th>Username</th>
+                                            <th>Email</th>
                                             <th>Mobile Number</th>
                                             <th>Address</th>
                                           
@@ -38,6 +39,7 @@
                                         <tr>
                                             <td><?php echo $row['fullname'] ?> </td>
                                             <td><?php echo $row['username'] ?> </td>
+                                            <td><?php echo $row['email'] ?> </td>
                                             <td><?php echo $row['mobile'] ?> </td>
                                             <td><?php echo $row['address'] ?> </td>
                                         

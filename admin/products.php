@@ -47,9 +47,9 @@
                                                 <td><?php echo $row['product_name']; ?></td>
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['cat_name'];?></td>
-                                                <td><?php echo $row['price']; ?></td>
+                                                <td><?php echo number_format($row['price']); ?></td>
                                                 <td><?php echo $row['qty']; ?></td>
-                                                <td><img src="products/<?php echo $row['image'];?>" height=200px width=200px></td>
+                                                <td><img src="products/<?php echo $row['image'];?>" height=100px width=100px></td>
                                                 <td>
                                                     <a href="#edit_prod<?php echo $row['p_id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
                                                     <a class="btn btn-danger"  href="#delete_prod<?php echo $row['p_id']; ?>" data-toggle="modal">Delete</a>
