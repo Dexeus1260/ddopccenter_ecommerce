@@ -62,7 +62,7 @@ function login()
 //cat
 function manage_cat(){
     global $con;
-    $view = "select * from categories";
+    $view = "select categories.cat_name,categories.brand,categories.id,brand.brand_title FROM categories JOIN  brand on brand.brand_id = categories.brand";
     return mysqli_query($con,$view);
 
 }
@@ -99,13 +99,14 @@ function add_category()
     {
         global $con;
         $category = safe_value($con,$_POST['category']);
+        $brand = safe_value($con,$_POST['brand']);
         if(empty($category))
         {
             echo   '<script> alert("Pleas input field!"); </script>';
         }else
         {
            //cat check
-           $sql = "select * from categories where cat_name = '$category' ";
+           $sql = "select * from categories where cat_name = '$category' && brand = '$brand' ";
            $check = mysqli_query($con,$sql);
 
            if(mysqli_fetch_assoc($check))
@@ -115,7 +116,7 @@ function add_category()
            }
            else
            {
-            $query = "insert into categories (cat_name,status) values ('$category','1')";
+            $query = "insert into categories (cat_name,brand) values ('$category','$brand')";
             $result = mysqli_query($con,$query);
 
             if($result)
@@ -189,7 +190,7 @@ function manage_sub()
 function manage_brands()
 {
     global $con;
-    $sql = "select brand.brand_id,brand.brand_title,brand.brand_cat,categories.cat_name FROM categories JOIN brand ON brand.brand_cat = categories.id";
+    $sql = "select * from brand";
     return mysqli_query($con,$sql);
 }
 
@@ -200,9 +201,9 @@ function add_brand()
     {
        global $con;
        $brand_name = safe_value($con,$_POST['brand']);
-       $parent_cat = safe_value($con,$_POST['parent_cat']);
+      
 
-       $sql = "select * from brand where brand_title = '$brand_name' && brand_cat = '$parent_cat' ";
+       $sql = "select * from brand where brand_title = '$brand_name' ";
        $result = mysqli_query($con, $sql);
 
        if(mysqli_fetch_assoc($result))
@@ -211,7 +212,7 @@ function add_brand()
        }
        else
        {
-           $sql = "insert into brand (brand_title,brand_cat) values ('$brand_name','$parent_cat')";
+           $sql = "insert into brand (brand_title) values ('$brand_name')";
            $result = mysqli_query($con,$sql);
 
            if($result)
@@ -266,8 +267,9 @@ function q_product(){
             left join categories 
             on categories.id = products.category_name
             LEFT join brand
-            on brand.brand_cat = products.brand
+            on brand.brand_id = products.brand
             GROUP BY products.p_id
+    
             ";
 
 

@@ -2,8 +2,8 @@
 <?php 
 require_once 'php_files/header.php';
 
-$cat_id = $_POST['cat_id'];
-$sql = "select * from brand where brand_cat = '$cat_id'";
+$brand_id = $_POST['brand_id'];
+$sql = "select * from categories where brand = '$brand_id'";
 $result = mysqli_query($con,$sql);
 
 ?>
@@ -11,7 +11,7 @@ $result = mysqli_query($con,$sql);
 <?php 
 while($row = mysqli_fetch_array($result)){
     ?>
-     <option value="<?php echo $row['brand_id'];?>"><?php echo $row['brand_title'];?></option>
+     <option value="<?php echo $row['id'];?>"><?php echo $row['cat_name'];?></option>
 
     <?php
 }

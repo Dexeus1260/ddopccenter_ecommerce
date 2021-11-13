@@ -68,7 +68,7 @@
                     </div>
 
  
-                    <?php $cat = manage_cat(); ?>
+                    <?php $brand = manage_brands(); ?>
                     <div class="modal fade" id="addProdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
@@ -89,21 +89,28 @@
                                                                         <input type="text" class="form-control" name="prod_name" required>
                                                                     </div>
                                                                 </div>
-                                                                
+                                                                <div class="col-md-12">  
+                                                                    <div class="form-group brand">
+                                                                    <label for="val-username">Brand</span></label>
+                                                                    <?php save_products(); display_message() ?> 
+                                                                        <select name="brand_N" class="form-control" id="brand_select" required>
+                                                                        <option selected disabled value="" > Select Category</option>
+                                                                                    <?php 
+                                                                                        while($row = mysqli_fetch_assoc($brand))
+                                                                                        {
+                                                                                            ?>
+                                                                                            <option value="<?php echo $row['brand_id'];?>"><?php echo $row['brand_title'];?></option>
+                                                                                    <?php }
+                                                                                    ?>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>  
                                                                 <div class="col-md-12 ">  
                                                                     <div class="form-group">
                                                                     <label for="val-username">Category</span></label>
-                                                                    
-                                                                        <?php save_products(); display_message() ?> 
+                                                                       
                                                                             <select name="cat_id" class="form-control product_category" id="cat_select" required>
-                                                                                    <option selected disabled value="" > Select Category</option>
-                                                                                    <?php 
-                                                                                        while($row = mysqli_fetch_assoc($cat))
-                                                                                        {
-                                                                                            ?>
-                                                                                            <option value="<?php echo $row['id'];?>"><?php echo $row['cat_name'];?></option>
-                                                                                    <?php }
-                                                                                    ?>
+                                                                            <option selected disabled > Select Category</option>  
                                                                                     
                                                                             </select>
                                                                     </div>
@@ -116,14 +123,7 @@
                                                                         </select>
                                                                     </div>
                                                                 </div>                   
-                                                                <div class="col-md-12">  
-                                                                    <div class="form-group brand">
-                                                                    <label for="val-username">Brand</span></label>
-                                                                        <select name="brand_N" class="form-control" id="brand_select" required>
-                                                                                <option selected disabled > Select Brand</option> 
-                                                                        </select>
-                                                                    </div>
-                                                                </div>  
+                                                              
                                                             
                                                     
                                                                 <div class="col-md-12">
@@ -175,6 +175,22 @@
 
 $('document').ready(function()
 {
+  
+
+    $('#brand_select').on('change',function()
+    {
+        var brand_id = this.value;
+        $.ajax({
+            url: "get_brand.php", type: "POST", data: { brand_id : brand_id },
+            cache: false, success: function(result){
+                $("#cat_select").html(result);
+            }
+
+
+        });
+
+    });
+
     $('#cat_select').on('change',function()
     {
         var cat_id = this.value;
@@ -187,21 +203,5 @@ $('document').ready(function()
 
         })
     });
-
-    $('#cat_select').on('change',function()
-    {
-        var cat_id = this.value;
-        $.ajax({
-            url: "get_brand.php", type: "POST", data: { cat_id : cat_id },
-            cache: false, success: function(result){
-                $("#brand_select").html(result);
-            }
-
-
-        });
-
-
-    });
-
 });
 </script>

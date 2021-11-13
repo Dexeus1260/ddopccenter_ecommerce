@@ -7,7 +7,7 @@
       }
      
      $value = manage_brands();
-     $cat = manage_cat();
+  
 ?>
    
 
@@ -27,7 +27,7 @@
                                     <thead>
                                         <tr>
                                             <th>Brand Name</th>
-                                            <th>Category Name</th>
+                                            
                                             <th style="width: 20%;" >Operations</th>
                                            
                                         </tr>
@@ -37,7 +37,7 @@
                                         <tr>    
                                          <?php while($row = mysqli_fetch_assoc($value)){ ?>
                                             <td><?php echo $row['brand_title'] ?></td>
-                                            <td><?php echo $row['cat_name'] ?></td>
+                                            
                                             <td>
                                                 <a href="#edit_brand<?php echo $row['brand_id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
                                                 <a class="btn btn-danger"  href="#delete_brand<?php echo $row['brand_id']; ?>" data-toggle="modal">Delete</a>
@@ -72,18 +72,7 @@
                                                                         <label for="val-username">Brand Name</span></label>
                                                                         <input type="text" class="form-control" name="brand" required >
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label for="val-username">Parent Category</span></label>
-                                                                        <select name="parent_cat" class="form-control" required>
-                                                                        <option selected disabled value=""> Select Category</option>
-                                                                        <?php 
-                                                                        while($row = mysqli_fetch_assoc($cat))
-                                                                        { ?>
-                                                                            <option value="<?php echo $row['id']?>"><?php echo $row['cat_name'] ?></option>
-                                                                        <?php }
-                                                                        ?>
-                                                                        </select>
-                                                                    </div>
+                                                                   
                                                                 </div>
                                                             </div>
                                                                 <div class="col-lg-12">

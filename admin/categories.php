@@ -7,7 +7,7 @@
       }
 
       $value = manage_cat();
-      active_status();
+     
 ?>
    
 
@@ -29,7 +29,7 @@
                                             <th>ID</th>
                                             <th>Category Name</th>
                                             <!-- <th>Brand</th> -->
-                                            <th>Status</th>
+                                            <th>Brand</th>
                                             <th style="width: 20%;" >Operations</th>
                                            
                                         </tr>
@@ -42,24 +42,9 @@
                                             <td><?php echo $row['id'];?></td>
                                             <td><?php echo $row['cat_name'];?></td>
                                             <!-- <td>Asus</td> -->
-                                            <td><?php 
-
-                                                if($row['status']=='1'){
-                                                    echo '<span class="badge badge-info">Active';
-                                                }else{
-                                                    echo '<span class="badge badge-danger">Not Active';
-                                                }
-                                               ?> </span>
+                                            <td><?php echo $row['brand_title'] ?> </span>
                                             </td>
-                                            <td><?php 
-
-                                                if($row['status'] == '1'){
-                                                    echo  "<a href='categories.php?opr=deactive&id=".$row['id']."' class='btn btn-success' >Deactive</a>"; 
-                                                }else{
-                                                    echo  "<a href='categories.php?opr=active&id=".$row['id']."' class='btn btn-success' >Active</a>";   
-                                                }
-                                                ?>
-
+                                            <td>
                                                 <!-- <a href="" class="btn btn-primary" data-toggle="modal" data-target="#upCatModal">Edit</a> -->
                                                 <a href="#edit_cat<?php echo $row['id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
                                                 <a class="btn btn-danger"  href="#delete_cat<?php echo $row['id']; ?>" data-toggle="modal">Delete</a>
@@ -91,9 +76,24 @@
                                                             <div class="items-push">
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <div class="form-group">
+                                                                        <label for="val-username">Category</span></label>
                                                                         <input type="text" class="form-control" name="category" placeholder="Category name" >
                                                                     </div>
-                                                                </div>
+                                                                    <div class="form-group">
+                                                                        <label >Brand</span></label>
+                                                                        <select name="brand" class="form-control" required>
+                                                                        <option selected disabled value="">Select Brand</option>
+                                                                        <?php 
+                                                                         global $con;
+                                                                         $sql = "select * from brand";
+                                                                         $brand = mysqli_query($con,$sql);
+                                                                        while($row=mysqli_fetch_assoc($brand)){ ?>
+                                                                         <option value="<?php echo $row['brand_id']?>"><?php echo $row['brand_title'] ?></option>
+                                                                         <?php }
+                                                                         ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    </div>
                                                             </div>
                                                                 <div class="col-lg-12">
                                                                     <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Cancel</button>
