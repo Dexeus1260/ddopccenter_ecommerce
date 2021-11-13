@@ -331,7 +331,7 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="shop-grid-sidebar-left.html" class="d-block banner-animate--wave">
-                                <img class="img-fluid" src="assets/images/banner/free.png" width="1355" height="350" loading="lazy" alt="banner-wide-image-1">
+                                <img class="img-fluid" src="assets/images/banner/Free.png" width="1355" height="350" loading="lazy" alt="banner-wide-image-1">
                             </a>
                         </div>
                     </div>
