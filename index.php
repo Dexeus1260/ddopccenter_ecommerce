@@ -35,7 +35,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-5 offset-xl-1 col-lg-5 col-md-8 offset-md-1 col-10 ">
                                                         <div class="content">
-                                                            <span class="title-tag">BEST DEAL EVER</span>
+                                                            <span class="title-tag">BEST DEAL FOREVER</span>
                                                             <h2 class="title">Best PC Parts Shop </h2>
                                                             <p>The one and only online PC shopping center </p>
                                                             <p>in Davao de Oro </p>
@@ -217,7 +217,7 @@
                                                                     
                                                                     <div class="product-event-items">
                                                                         <a href="cart.html" class="btn cart-btn">Add to cart</a>
-                                                                        <a href="wishlist.html" class="btn wishlist-btn"><span class="material-icons">favorite_border</span></a>
+                                                                        
                                                                     </div>
                                                                 </div>
                                                                 

@@ -104,16 +104,19 @@
                                     <li class="menu-items"><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </div>
+                            <form action="search.php" method="GET">
                             <div class="search-event">
-                                <input class="header-search" type="search" placeholder="Search">
+                                <input class="header-search" type="search" name="search" placeholder="Search">
                                 <button class="header-search-btn" type="submit"><img src="assets/images/icons/icon-search.svg" alt=""></button>
                             </div>
+                            </form>
                             <!-- End Menu event -->
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="header-action">
-                            <button class="header-action-item header-action-wishlist" data-bs-toggle="offcanvas" data-bs-target="#addcartOffcanvas"><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></button>
+                            <!-- <button class="header-action-item header-action-wishlist" data-bs-toggle="offcanvas" data-bs-target="#addcartOffcanvas"><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></button> -->
+                            <a href="cart.php" class="header-action-item header-action-wishlist " style="margin-top: 12px;" ><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></a>
                             <?php 
                             if(isset($_SESSION['USER'])){
                                     ?>
