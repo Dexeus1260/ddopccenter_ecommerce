@@ -5,9 +5,16 @@
       {
           header("location: index.php");
       }
+    //   session_destroy();
+      var_dump($_SESSION['cart']);
+      $whereIn = implode(',',$_SESSION['cart']);
+      $cart= array($whereIn);
+     
 
-      $prod = q_product();
-      
+      global $con;
+      $sql = "select * from products where p_id in ($whereIn)";
+      $res = mysqli_query($con,$sql);
+     
 ?>
 
     
@@ -45,10 +52,7 @@
                     <div class="col-12">
                         <div class="table_desc">
                             <div class="table_page table-responsive">
-                                <?php
-                                
-                                
-                                ?>
+                              <?php if(!empty($res)) {?>
                                 <table>
                                     <!-- Start Cart Table Head -->
                                     <thead>
@@ -62,14 +66,23 @@
                                         </tr>
                                     </thead> <!-- End Cart Table Head -->
                                     <tbody>
+                                    <?php while($row=mysqli_fetch_assoc($res)){ ?>
                                         <!-- Start Cart Single Item-->
                                         <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
-                                            <td class="product_thumb"><a href="product-details-default.html"><img src="assets/images/products/small/product-small-1.webp" alt=""></a></td>
-                                            <td class="product_name"><a href="product-details-default.html">Handbag fringilla</a></td>
-                                            <td class="product-price">$65.00</td>
-                                            <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                            <td class="product_total">$130.00</td>
+                                            <td class="product_thumb"><img src="admin/products/<?php echo $row['image']?>" alt=""></td>
+                                            <td class="product_name"><a><?php echo $row['product_name'] ?></a></td>
+                                            <td class="product-price"><?php echo number_format($row['price'])  ?></td>
+                                            <td class="product_quantity"><label>Quantity</label><input min="1" max="100" value="<?php echo array_count_values($cart);?>" type="number"><?php print_r( array_count_values($cart));?></td>
+                                            <?php    
+                                         
+                                                $total = 0;
+                                                $total += $row['price'];
+                                                echo $total;
+                                                } ?>
+
+                                            <td class="product_total">
+                                                <?php echo $total;?></td>
                                         </tr> 
                                       
                                         <!-- <tr>
@@ -82,7 +95,10 @@
                                         </tr>  -->
                                     </tbody>
                                 </table>
+                                
                             </div>
+
+                            
                             <div class="cart_submit">
                                 <button class="btn btn-sm btn-radius btn-default" type="submit">update cart</button>
                             </div>
@@ -127,6 +143,8 @@
                                 <div class="checkout_btn">
                                     <a href="#" class="btn btn-sm btn-radius btn-default">Proceed to Checkout</a>
                                 </div>
+                                <?php  
+                               } else{set_message(display_error("Your cart is currently empty.")); display_message();} ?>
                             </div>
                         </div>
                     </div>
@@ -135,4 +153,4 @@
         </div> <!-- End Coupon Start -->
     </div> <!-- ...:::: End Cart Section:::... -->
 
-   <?php  require_once 'php_files/footer.php'; ?>
+    <?php  require_once 'php_files/footer.php' ?>

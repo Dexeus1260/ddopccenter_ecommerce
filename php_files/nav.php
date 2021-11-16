@@ -124,7 +124,7 @@
                            <?php }
                             else{
                                 ?>
-                                <a href="user_login.php" class="header-action-item header-action-wishlist text-white">LOGIN</a>
+                                <a href="user_login.php" class="header-action-item header-action-wishlist text-white" style="margin-top: 12px;" >LOGIN</a>
                            <?php }
                            
                            
@@ -179,7 +179,7 @@
                            <?php }
                             else{
                                 ?>
-                                <a href="user_login.php" class="header-action-item header-action-wishlist text-dark">LOGIN</a>
+                                <a href="user_login.php" class="header-action-item header-action-wishlist text-dark" style="margin-top: 2px;" >LOGIN</a>
                            <?php }
                            
                            

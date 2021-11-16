@@ -460,6 +460,4 @@ function customer()
 
 
 
-
-
 ?>
