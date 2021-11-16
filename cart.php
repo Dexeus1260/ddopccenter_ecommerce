@@ -10,73 +10,7 @@
       
 ?>
 
-    <!--  .....::::: Start Add Cart Offcanvas Section :::::.... -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="addcartOffcanvas">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Add Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="offcanvas-products-list">
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-1.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Tops</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$100.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-2.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Leggings</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$49.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-3.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Casual Shirt</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$65.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-            </ul>
-            <div class="offcanvas-action-link">
-                <a href="cart.html" class="btn">Add Cart</a>
-                <a href="checkout.html" class="btn">Checkout</a>
-            </div>
-        </div>
-    </div>
-    <!-- ...:::: End Add Cart Offcanvas Section:::... -->
+    
 
     <!-- ...::: Strat Breadcrumb Section :::... -->
     <div class="breadcrumb-section">
@@ -111,6 +45,10 @@
                     <div class="col-12">
                         <div class="table_desc">
                             <div class="table_page table-responsive">
+                                <?php
+                                
+                                
+                                ?>
                                 <table>
                                     <!-- Start Cart Table Head -->
                                     <thead>
@@ -132,25 +70,16 @@
                                             <td class="product-price">$65.00</td>
                                             <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
                                             <td class="product_total">$130.00</td>
-                                        </tr> <!-- End Cart Single Item-->
-                                        <!-- Start Cart Single Item-->
-                                        <tr>
-                                            <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
-                                            <td class="product_thumb"><a href="product-details-default.html"><img src="assets/images/products/small/product-small-2.webp" alt=""></a></td>
-                                            <td class="product_name"><a href="product-details-default.html">Handbags justo</a></td>
-                                            <td class="product-price">$90.00</td>
-                                            <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                            <td class="product_total">$180.00</td>
-                                        </tr> <!-- End Cart Single Item-->
-                                        <!-- Start Cart Single Item-->
-                                        <tr>
+                                        </tr> 
+                                      
+                                        <!-- <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
                                             <td class="product_thumb"><a href="product-details-default.html"><img src="assets/images/products/small/product-small-3.webp" alt=""></a></td>
                                             <td class="product_name"><a href="product-details-default.html">Handbag elit</a></td>
                                             <td class="product-price">$80.00</td>
                                             <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
                                             <td class="product_total">$160.00</td>
-                                        </tr> <!-- End Cart Single Item-->
+                                        </tr>  -->
                                     </tbody>
                                 </table>
                             </div>

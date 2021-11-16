@@ -170,7 +170,7 @@
         <div class="offcanvas-body">
             <div class="d-flex justify-content-center ">
               
-                <a href="cart.html" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-shopping-bag-dark.svg" alt=""></a>
+                <a href="cart.php" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-shopping-bag-dark.svg" alt=""></a>
             
                 <?php 
                             if(isset($_SESSION['USER'])){
@@ -367,70 +367,3 @@
         </div>
     </div>
     <!-- ...:::: End Wishlist Offcanvas Section:::... -->
-
-    <!--  .....::::: Start Add Cart Offcanvas Section :::::.... -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="addcartOffcanvas">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Add Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="offcanvas-products-list">
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-1.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Tops</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$100.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-2.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Leggings</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$49.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-                <li class="single-item">
-                    <div class="box">
-                        <a href="" class="image">
-                            <img src="assets/images/products/small/product-small-3.webp" alt="" class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="content">
-                            <a href="" class="title">Casual Shirt</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$65.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-delete text-right">
-                        <a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a>
-                    </div>
-                </li>
-            </ul>
-            <div class="offcanvas-action-link">
-                <a href="cart.html" class="btn">Add Cart</a>
-                <a href="checkout.html" class="btn">Checkout</a>
-            </div>
-        </div>
-    </div>
