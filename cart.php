@@ -6,14 +6,13 @@
           header("location: index.php");
       }
     //   session_destroy();
-      var_dump($_SESSION['cart']);
-      $whereIn = implode(',',$_SESSION['cart']);
-      $cart= array($whereIn);
      
 
+      $whereIn = implode(',',$_SESSION['cart']);
       global $con;
       $sql = "select * from products where p_id in ($whereIn)";
       $res = mysqli_query($con,$sql);
+    
      
 ?>
 
@@ -66,25 +65,32 @@
                                         </tr>
                                     </thead> <!-- End Cart Table Head -->
                                     <tbody>
-                                    <?php while($row=mysqli_fetch_assoc($res)){ ?>
+                                    <?php 
+                                    $sum = 0;
+                                    while($row=mysqli_fetch_assoc($res)){ ?>
                                         <!-- Start Cart Single Item-->
                                         <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
-                                            <td class="product_thumb"><img src="admin/products/<?php echo $row['image']?>" alt=""></td>
-                                            <td class="product_name"><a><?php echo $row['product_name'] ?></a></td>
-                                            <td class="product-price"><?php echo number_format($row['price'])  ?></td>
-                                            <td class="product_quantity"><label>Quantity</label><input min="1" max="100" value="<?php echo array_count_values($cart);?>" type="number"><?php print_r( array_count_values($cart));?></td>
+                                            <td class="product_thumb"><img src="admin/products/<?php echo $row['image'];?>" alt=""></td>
+                                            <td class="product_name"><a><?php echo $row['product_name']; ?></a></td>
+                                            <td class="product-price">₱<?php echo number_format($row['price']) ; ?></td>
+                                            <td class="product_quantity"><label>Quantity</label><input min="1" max="100" value="<?php echo array_count_values($_SESSION['cart'])[$row["p_id"]];?>" type="number"></td>
                                             <?php    
-                                         
+                                               
+                                                $count = array_count_values($_SESSION['cart'])[$row["p_id"]];
                                                 $total = 0;
-                                                $total += $row['price'];
-                                                echo $total;
-                                                } ?>
-
-                                            <td class="product_total">
-                                                <?php echo $total;?></td>
+                                                $total += $row['price'] * $count;
+                                                $sum = $total+$sum;
+                                             
+                                                ?>
+                                               
+                                            <td class="product_total">₱
+                                                <?php echo number_format( $total);?></td>
+                                                
+                                             
                                         </tr> 
-                                      
+                                   <?php } ?>
+
                                         <!-- <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
                                             <td class="product_thumb"><a href="product-details-default.html"><img src="assets/images/products/small/product-small-3.webp" alt=""></a></td>
@@ -114,31 +120,23 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="coupon_code left">
-                            <h3>Coupon</h3>
-                            <div class="coupon_inner">
-                                <p>Enter your coupon code if you have one.</p>
-                                <input class="mb-2" placeholder="Coupon code" type="text">
-                                <button type="submit" class="btn btn-sm btn-radius btn-default">Apply coupon</button>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="coupon_code right">
                             <h3>Cart Totals</h3>
                             <div class="coupon_inner">
-                                <div class="cart_subtotal">
-                                    <p>Subtotal</p>
-                                    <p class="cart_amount">$215.00</p>
-                                </div>
+                                
                                 <div class="cart_subtotal ">
                                     <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> $255.00</p>
+                                    <p class="cart_amount">FREE SHIPPING</p>
                                 </div>
-                                <a href="#">Calculate shipping</a>
+                               
 
                                 <div class="cart_subtotal">
                                     <p>Total</p>
-                                    <p class="cart_amount">$215.00</p>
+                                    <p class="cart_amount">₱<?php echo number_format( $sum);?></p>
                                 </div>
                                 <div class="checkout_btn">
                                     <a href="#" class="btn btn-sm btn-radius btn-default">Proceed to Checkout</a>
