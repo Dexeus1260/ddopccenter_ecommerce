@@ -116,7 +116,7 @@
                     <div class="col-auto">
                         <div class="header-action">
                             <!-- <button class="header-action-item header-action-wishlist" data-bs-toggle="offcanvas" data-bs-target="#addcartOffcanvas"><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></button> -->
-                            <a href="cart.php" class="header-action-item header-action-wishlist " style="margin-top: 12px;" ><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></a>
+                            <a href="cart.php" class="header-action-item header-action-wishlist " style="margin-top: 12px;" ><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""><span id="count">0</span></a>
                             <?php 
                             if(isset($_SESSION['USER'])){
                                     ?>
@@ -170,7 +170,7 @@
         <div class="offcanvas-body">
             <div class="d-flex justify-content-center ">
               
-                <a href="cart.php" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-shopping-bag-dark.svg" alt=""></a>
+                <a href="cart.php" class="header-action-item header-action-wishlist"><img src="assets/images/icons/icon-shopping-bag-dark.svg" alt=""><span id="count">0</span></a>
             
                 <?php 
                             if(isset($_SESSION['USER'])){

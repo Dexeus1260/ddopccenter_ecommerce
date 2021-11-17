@@ -12,12 +12,13 @@
         
         // var_dump($_SESSION['cart']);
         $whereIn = implode(',',$_SESSION['cart']);
-        
+        // var_dump($whereIn);
         global $con;
         $sql = "select * from products where p_id in ($whereIn)";
         $res = mysqli_query($con,$sql);
     }
      
+    
      
 ?>
 
@@ -189,3 +190,5 @@
                             </div>
 
     <?php  require_once 'php_files/footer.php' ?>
+
+    
