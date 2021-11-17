@@ -6,13 +6,18 @@
           header("location: index.php");
       }
     //   session_destroy();
-     
-
-      $whereIn = implode(',',$_SESSION['cart']);
-      global $con;
-      $sql = "select * from products where p_id in ($whereIn)";
-      $res = mysqli_query($con,$sql);
     
+     if(!empty($_SESSION['cart'])){
+ 
+        
+        // var_dump($_SESSION['cart']);
+        $whereIn = implode(',',$_SESSION['cart']);
+        
+        global $con;
+        $sql = "select * from products where p_id in ($whereIn)";
+        $res = mysqli_query($con,$sql);
+    }
+     
      
 ?>
 
@@ -41,7 +46,7 @@
         </div>
     </div>
     <!-- ...::: End Breadcrumb Section :::... -->
-
+    <?php if(!empty($res)) {?>
     <!-- ...:::: Start Cart Section:::... -->
     <div class="cart-section section-fluid-270 section-top-gap-100">
         <!-- Start Cart Table -->
@@ -51,7 +56,12 @@
                     <div class="col-12">
                         <div class="table_desc">
                             <div class="table_page table-responsive">
-                              <?php if(!empty($res)) {?>
+                                <?php 
+                                    $sum = 0;
+                                    while($row=mysqli_fetch_assoc($res)){ ?>
+                            
+                            
+                            <form method="POST" action="up_cart.php?id=<?php echo $row['p_id']?>" enctype='multipart/form-data'>
                                 <table>
                                     <!-- Start Cart Table Head -->
                                     <thead>
@@ -64,17 +74,26 @@
                                             <th class="product_total">Total</th>
                                         </tr>
                                     </thead> <!-- End Cart Table Head -->
+                                   
                                     <tbody>
-                                    <?php 
-                                    $sum = 0;
-                                    while($row=mysqli_fetch_assoc($res)){ ?>
+                                
                                         <!-- Start Cart Single Item-->
                                         <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
                                             <td class="product_thumb"><img src="admin/products/<?php echo $row['image'];?>" alt=""></td>
                                             <td class="product_name"><a><?php echo $row['product_name']; ?></a></td>
                                             <td class="product-price">₱<?php echo number_format($row['price']) ; ?></td>
-                                            <td class="product_quantity"><label>Quantity</label><input min="1" max="100" value="<?php echo array_count_values($_SESSION['cart'])[$row["p_id"]];?>" type="number"></td>
+                                            <td class="product_quantity">
+                                                <label>Quantity</label>
+                                                <input min="1" max="100" name="quantity_new" value="<?php echo array_count_values($_SESSION['cart'])[$row["p_id"]];?>" type="number">
+                                                <input type="hidden" name="name" value="<?php echo $row['product_name']; ?>" >
+                                                <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
+                                                <input type="hidden" name="id" value="<?php echo $row['p_id']; ?>">
+                                                <input type="hidden" name="quantity_old" value="<?php echo array_count_values($_SESSION['cart'])[$row["p_id"]];?>">
+                                            
+                                            </td>
+
+                                            
                                             <?php    
                                                
                                                 $count = array_count_values($_SESSION['cart'])[$row["p_id"]];
@@ -89,7 +108,8 @@
                                                 
                                              
                                         </tr> 
-                                   <?php } ?>
+                                       
+                                      
 
                                         <!-- <tr>
                                             <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
@@ -101,13 +121,18 @@
                                         </tr>  -->
                                     </tbody>
                                 </table>
-                                
+                                         <div class="cart_submit">
+                                            
+                                          <button type="submit"  class="btn btn-sm btn-radius btn-default">update qty</button>
+
+                                   </div>
+                                     
+                                <?php } ?>
                             </div>
 
                             
-                            <div class="cart_submit">
-                                <button class="btn btn-sm btn-radius btn-default" type="submit">update cart</button>
-                            </div>
+                        
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -141,8 +166,6 @@
                                 <div class="checkout_btn">
                                     <a href="#" class="btn btn-sm btn-radius btn-default">Proceed to Checkout</a>
                                 </div>
-                                <?php  
-                               } else{set_message(display_error("Your cart is currently empty.")); display_message();} ?>
                             </div>
                         </div>
                     </div>
@@ -150,5 +173,19 @@
             </div>
         </div> <!-- End Coupon Start -->
     </div> <!-- ...:::: End Cart Section:::... -->
+                                    <?php  
+                                    }
+                                    else{
+                                     ?>   
+
+                            <div class="cart-section section-fluid-270 section-top-gap-100">
+                                    <!-- Start Cart Table -->
+                                    <div class="cart-table-wrapper">
+                                        <div class="container-fluid">
+                                    <?php
+                                        set_message(display_error("Your cart is currently empty.")); display_message();} ?>
+                                         </div>
+                                    </div>
+                            </div>
 
     <?php  require_once 'php_files/footer.php' ?>
