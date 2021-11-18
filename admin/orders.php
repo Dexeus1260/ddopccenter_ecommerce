@@ -5,6 +5,24 @@
       {
           header("location: index.php");
       }
+
+      global $con;
+      $sql = "select 
+      order_products.user_id,order_products.order_id,order_products.product_id,order_products.product_qty,order_products.total_amount,order_products.order_date,order_products.delivery,	
+      products.product_name,
+      products.p_id,
+      users.username,
+      users.email,
+      users.id
+      
+      from order_products 
+      left join products 
+      on products.p_id = order_products.product_id
+      left join users 
+      on users.id = order_products.user_id
+
+    ";
+      $res = mysqli_query($con,$sql);
 ?>
    
 
@@ -26,46 +44,32 @@
                                             <th>Product details</th>
                                             <th>Qty</th>
                                             <th>Customer details</th>
+                                            <th>Total Amount</th>
                                             <th>Order Date</th>
-                                            <th>Payment Status</th>
                                             <th>Delivery Status</th>
                                            
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Category Name</th>
-                                            <th>Status</th>
-                                            <th>Operations</th>
-                                           
-                                        </tr>
-                                    </tfoot> -->
+                                    <?php 
+                                    $totalSale = 0;
+                                    while($row=mysqli_fetch_assoc($res)){?>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+
+                                       <tr>
+                                            <td><?php echo $row['order_id'] ?></td>
+                                            <td><?php echo $row['product_name'] ?></td>
+                                            <td><?php echo $row['product_qty'] ?></td>
+                                            <td><?php echo $row['email'] ?></td>
+                                            <td>₱<?php echo number_format($row['total_amount']) ?></td>
+                                            <td><?php echo date('M d, Y', strtotime($row['order_date']));?></td>
+                                            <td><?php echo $row['delivery'] ?></td>
                                            
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            
-                                        </tr> -->
-                                        
-                                      
+                                          <?php 
+                                            $totalSale += $row['total_amount'];
+                                          ?>
                                     </tbody>
+                                    <?php } ?>
                                 </table>
                             </div>
                         </div>
@@ -83,7 +87,9 @@
     </div>
     <!-- End of Page Wrapper -->
 
- 
+    <?php 
+    $_SESSION['sales'] = $totalSale;
+    ?>
 
 
 <?php require_once 'php_files/footer.php' ?>

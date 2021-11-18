@@ -3,6 +3,7 @@
 
       if(!isset($_SESSION['USER']))
       {
+        echo '<script>alert("You are not logged in!") </script>';
           header("location: index.php");
       }
     //   session_destroy();

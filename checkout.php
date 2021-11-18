@@ -1,7 +1,7 @@
-
 <?php require_once 'php_files/header.php';
       require_once 'php_files/nav.php'; 
 
+    $user = $_SESSION['USER']; 
 
       if(!isset($_SESSION['cart_items']) || empty($_SESSION['cart_items']))
       {
@@ -88,7 +88,10 @@
     <!-- ...:::: Start Checkout Section:::... -->
     <div class="checkout-section section-fluid-270 section-top-gap-100">
         <div class="container-fluid">
-            <?php $cos = customer(); ?>
+            <?php 
+            global $con;
+            $sql = "select * from users where username = '$user'|| email = '$user'";
+            $cos = mysqli_query($con,$sql);?>
             <!-- Start User Details Checkout Form -->
             <div class="checkout_form">
                 <div class="row">

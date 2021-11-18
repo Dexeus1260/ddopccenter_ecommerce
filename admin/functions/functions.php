@@ -452,8 +452,31 @@ function customer()
 }
 
 
+//new query
+function admin_prod()
+{
+    global $con;
+    $sql="
+    select 
+            products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
+            categories.cat_name, 
+            sub_cat.sub_cat_title, 
+            order_products.product_qty,
+            brand.brand_title 
+            
+            from products 
+            left join sub_cat 
+            on sub_cat.sub_cat_id = products.sub_cat
+            left join categories 
+            on categories.id = products.category_name
+            LEFT join brand
+            on brand.brand_id = products.brand
+            left join order_products
+            on order_products.product_id = products.p_id
+    ";
 
-
+    return mysqli_query($con,$sql);
+}
 
 
 

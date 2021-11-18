@@ -101,7 +101,7 @@
                                         <tr>
                                             
                                             <td><?php echo $row['product_name'] ?></td>
-                                            <td><?php echo $row['order_date']?></td>
+                                            <td><?php echo date('M d, Y', strtotime($row['order_date']));?></td>
                                             <td><span class="success"><?php echo $row['delivery']?></span></td>
                                             <td>₱<?php echo number_format($row['total_amount'])?> for <?php echo $row['product_qty']?> item </td>
                                           

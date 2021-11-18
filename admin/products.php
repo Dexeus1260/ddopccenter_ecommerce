@@ -6,7 +6,7 @@
           header("location: index.php");
       }
 
-      $prod = q_product();
+      $prod = admin_prod()
       
 ?>
    
@@ -34,6 +34,7 @@
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
+                                            <th>Stocks</th>
                                             <th>Image</th>
                                            
                                             <th>Operations</th>
@@ -49,6 +50,7 @@
                                                 <td><?php echo $row['cat_name'];?></td>
                                                 <td><?php echo number_format($row['price']); ?></td>
                                                 <td><?php echo $row['qty']; ?></td>
+                                                <td><?php echo $row['qty']-$row['product_qty']; ?></td>
                                                 <td><img src="products/<?php echo $row['image'];?>" height=100px width=100px></td>
                                                 <td>
                                                     <a href="#edit_prod<?php echo $row['p_id'];?>" class="btn btn-primary" data-toggle="modal">Edit</a>                      
