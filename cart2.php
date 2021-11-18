@@ -7,21 +7,16 @@
       }
     //   session_destroy();
     
+    if(isset($_GET['action'],$_GET['item']) && $_GET['action'] == 'remove')
+    {
+        unset($_SESSION['cart_items'][$_GET['item']]);
+        header('location:cart2.php');
+        exit();
+    }
+	
 
     
-     if(!empty($_SESSION['cart'])){
- 
-       
-        // var_dump($_SESSION['cart']);
-        $whereIn = implode(',', $_SESSION['cart']);
-
-       
-        // var_dump($whereIn);
-        
-        global $con;
-        $sql = "select * from products where p_id in ($whereIn)";
-        $res = mysqli_query($con,$sql);
-    }
+   
      
     
      
@@ -52,7 +47,7 @@
         </div>
     </div>
     <!-- ...::: End Breadcrumb Section :::... -->
-    <?php if(!empty($res)) {?>
+    
     <!-- ...:::: Start Cart Section:::... -->
     <div class="cart-section section-fluid-270 section-top-gap-100">
         <!-- Start Cart Table -->
@@ -63,7 +58,8 @@
                         <div class="table_desc">
                             <div class="table_page table-responsive">
                                 
-                              
+                                <?php if(!empty($_SESSION['cart_items'])){
+                                    if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0){?>
                                     <table>
                                    
                                     <!-- Start Cart Table Head -->
@@ -76,68 +72,45 @@
                                             <th class="product-price">Price</th>
                                             <th class="product_quantity">Quantity</th>
                                             <th class="product_total">Total</th>
-                                            <th class="product_total">Operation</th>
+                                            <!-- <th class="product_total">Operation</th> -->
                                         </tr>
                                     </thead> <!-- End Cart Table Head -->
                                    
                                     <tbody>
-                              
-                                    <?php 
-                                        $sum = 0;
-                                        while($row=mysqli_fetch_assoc($res)){ ?>
+                                   
+                                  <?php 
+                                        $totalCounter = 0;
+                                        $itemCounter = 0;
+                                        foreach($_SESSION['cart_items'] as $key => $item){
+
+                                      
+                                        
+                                        $total = $item['product_price'] * $item['qty'];
+                                        $totalCounter+= $total;
+                                        $itemCounter+=$item['qty'];
+                                        ?>
                                    
                                         <!-- Start Cart Single Item-->
                                         <tr>
-                                            <td class="product_remove"><a href="#"><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
-                                            <td class="product_thumb"><img src="admin/products/<?php echo $row['image'];?>" alt=""></td>
-                                            <td class="product_name"><a><?php echo $row['product_name']; ?></a></td>
-                                            <td class="product-price">₱<?php echo number_format($row['price']) ; ?></td>
+                                            <td class="product_remove" ><a href="cart2.php?action=remove&item=<?php echo $key?>" ><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
+                                            <td class="product_thumb"><img src="admin/products/<?php echo $item['product_img'] ?>" alt=""></td>
+                                            <td class="product_name"><a><?php echo $item['product_name'];?></a></td>
+                                            <td class="product-price">₱<?php echo  number_format($item['product_price']);?></td>
                                             <td class="product_quantity">
                                                 <label>Quantity</label>
-                                                <form method="POST" action="up_cart.php?id=<?php echo $row['p_id'] ?>" >
-                                                <input min="1" max="100" name="quantity_new" value="<?php echo array_count_values($_SESSION['cart'])[$row["p_id"]];?>" type="number">
-                                                <input type="hidden" name="id" value="<?php echo $row['p_id']; ?>">
-                                                <input type="hidden" name="quantity_old" value="<?php echo  array_count_values($_SESSION['cart'])[$row["p_id"]]; ?>">
-                                                <input type="hidden" name="prod_name" value="<?php echo $row['product_name']  ?>">
-                                                <input type="hidden" name="prod_image" value="<?php echo  $row['image'] ?>">
-                                                <input type="hidden" name="price" value="<?php echo  $row['price'] ?>">
-                                              
+                                                <input min="1" max="100" class="cart-qty-single" data-item-id="<?php echo $key?>" value="<?php echo $item['qty'];?>" type="number">
                                             </td>
-                                          
-                                            
-                                            <?php    
-                                               
-                                                $count = array_count_values($_SESSION['cart'])[$row["p_id"]];
-                                                $total = 0;
-                                                $total += $row['price'] * $count;
-                                                $sum = $total+$sum;
-
-                                                ?>
-                                               
-                                            <td class="product_total">₱
-                                                <?php echo number_format( $total);?></td>
-                                                <input type="hidden" name="total" value="<?php echo $total ?>">
-                                                <input type="hidden" name="sum" value="<?php echo $sum ?>">
-                                          
-                                             
-                                                <td>
+                                            <td class="product_total">₱ <?php echo  number_format($total) ?></td>
+                                                <!-- <td>
                                                     <button type="submit" name="submit" class="btn btn-sm btn-radius btn-default">update qty</button>
                                                 </td>   
-                                                <?php } ?>
+                                                -->
                                                 
-                                                <?php 
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                ?>
                                             </tr> 
                                             
                                             
                                             
-                                            
+                                            <?php }?>
                                         </tbody> 
                                     </table>
                                     
@@ -177,7 +150,7 @@
 
                                 <div class="cart_subtotal">
                                     <p>Total</p>
-                                    <p class="cart_amount">₱<?php echo number_format( $sum);?></p>
+                                    <p class="cart_amount">₱<?php echo number_format($totalCounter);?></p>
                                 </div>
                                 <div class="checkout_btn">
                                     <a href="checkout.php" class="btn btn-sm btn-radius btn-default">Proceed to Checkout</a>
@@ -187,19 +160,15 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div> <!-- End Coupon Start -->
     </div> <!-- ...:::: End Cart Section:::... -->
-                                    <?php  
-                                    }
-                                    else{
-                                     ?>   
-
+                                  
                             <div class="cart-section section-fluid-270 section-top-gap-100">
                                     <!-- Start Cart Table -->
                                     <div class="cart-table-wrapper">
                                         <div class="container-fluid">
-                                    <?php
-                                        set_message(display_error("Your cart is currently empty.")); display_message();} ?>
+                                   <?php }else{set_message(display_error("Your cart is empty"));display_message();} ?>
                                          </div>
                                     </div>
                             </div>

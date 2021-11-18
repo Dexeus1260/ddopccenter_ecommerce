@@ -201,7 +201,7 @@
                                                             while($row=mysqli_fetch_assoc($prod)){
                                                         ?>
                                                         <div class="product-single-item-style-1 swiper-slide">
-                                                            <a href="#" class="image img-responsive ">
+                                                            <a href="single_prod.php?id=<?php echo $row['p_id']?>" class="image img-responsive ">
                                                                 <img class="img-fluid" src="admin/products/<?php echo $row['image']?>" width="435" height="350" loading="lazy" alt="product-image">
                                                                 <ul class="tooltip-tag-items">
                                                                     
@@ -210,15 +210,15 @@
                                                             <div class="content justify-content-center text-center">
                                                                 <div class="top">
                                                                     <span class="catagory"><?php $row['cat_name'] ?></span>
-                                                                    <h4 class="title"><a href="product-details-default.html"><?php echo $row['product_name'] ?></a></h4>
+                                                                    <h4 class="title"><a href="single_prod.php?id=<?php echo $row['p_id']?>"><?php echo $row['product_name'] ?></a></h4>
                                                                     <span class="price">₱<?php echo number_format($row['price']); ?></span>
                                                                 </div>
                                                                 <div class="bottom justify-content-center text-center">
                                                                     
-                                                                    <div class="product-event-items">
+                                                                    <!-- <div class="product-event-items">
                                                                         <a href="add_cart.php?id=<?php echo $row['p_id']?>"  class="btn cart-btn">Add to cart</a>
                                                                         
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                                 
                                                             </div>
