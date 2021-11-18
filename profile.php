@@ -63,35 +63,50 @@
                 <div class="col-sm-12 col-md-9 col-lg-9">
                     <!-- Tab panes -->
                     <div class="tab-content dashboard_content">
-                      
+                      <?php 
+                        global $con;
+                        $sql = "select 
+                                order_products.user_id,order_products.product_id,order_products.product_qty,order_products.total_amount,order_products.order_date,order_products.delivery,	
+                                products.product_name,
+                                products.p_id,
+                                users.username,
+                                users.email,
+                                users.id
+                                
+                                from order_products 
+                                left join products 
+                                on products.p_id = order_products.product_id
+                                left join users 
+                                on users.id = order_products.user_id
+                                
+                                where users.email = '$user' || users.username = '$user'
+                              ";
+                            $result = mysqli_query($con,$sql);
+                       ?>
                         <div class="tab-pane fade" id="orders">
                             <h4>Orders</h4>
                             <div class="table_page table-responsive">
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Order</th>
+                                            <th>Product</th>
                                             <th>Date</th>
                                             <th>Status</th>
                                             <th>Total</th>
-                                            <th>Actions</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php while($row=mysqli_fetch_assoc($result)){ ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
+                                            
+                                            <td><?php echo $row['product_name'] ?></td>
+                                            <td><?php echo $row['order_date']?></td>
+                                            <td><span class="success"><?php echo $row['delivery']?></span></td>
+                                            <td>₱<?php echo number_format($row['total_amount'])?> for <?php echo $row['product_qty']?> item </td>
+                                          
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
+                                       <?php }?>
                                     </tbody>
                                 </table>
                             </div>

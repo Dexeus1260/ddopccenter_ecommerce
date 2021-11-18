@@ -7,13 +7,7 @@
       }
     //   session_destroy();
     
-    if(isset($_GET['action'],$_GET['item']) && $_GET['action'] == 'remove')
-    {
-        unset($_SESSION['cart_items'][$_GET['item']]);
-        header('location:cart2.php');
-        exit();
-    }
-	
+   
 
     
    
@@ -49,6 +43,8 @@
     <!-- ...::: End Breadcrumb Section :::... -->
     
     <!-- ...:::: Start Cart Section:::... -->
+<?php if(!empty($_SESSION['cart_items'])){
+    if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0){?>
     <div class="cart-section section-fluid-270 section-top-gap-100">
         <!-- Start Cart Table -->
         <div class="cart-table-wrapper">
@@ -58,8 +54,6 @@
                         <div class="table_desc">
                             <div class="table_page table-responsive">
                                 
-                                <?php if(!empty($_SESSION['cart_items'])){
-                                    if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0){?>
                                     <table>
                                    
                                     <!-- Start Cart Table Head -->
@@ -160,18 +154,21 @@
                     </div>
                 </div>
             </div>
-            <?php } ?>
         </div> <!-- End Coupon Start -->
     </div> <!-- ...:::: End Cart Section:::... -->
-                                  
+    <?php } ?>
+    <?php 
+     }else{?>       
                             <div class="cart-section section-fluid-270 section-top-gap-100">
                                     <!-- Start Cart Table -->
                                     <div class="cart-table-wrapper">
                                         <div class="container-fluid">
-                                   <?php }else{set_message(display_error("Your cart is empty"));display_message();} ?>
+                                  <?php
+                                   set_message(display_error("Your cart is empty"));display_message();?>
                                          </div>
                                     </div>
-                            </div>
+                                </div>
+                                <?php } ?>
 
     <?php  require_once 'php_files/footer.php' ?>
 

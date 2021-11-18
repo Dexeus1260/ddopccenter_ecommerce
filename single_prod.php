@@ -11,6 +11,7 @@
         
         if(isset($_POST['add_to_cart']) && $_POST['add_to_cart'] == 'add to cart')
         {
+            $id_p= $_POST['id'];
             $productID = intval($_POST['p_id']);
             $productQty = intval($_POST['product_qty']);
             
@@ -21,7 +22,7 @@
             while($row=mysqli_fetch_assoc($res)){
     
     
-                $calculateTotalPrice = number_format($productQty * $row['price'],2);
+                $calculateTotalPrice = $productQty * $row['price'];
     
                 $cartArray = [
                     'product_id' =>$productID,
@@ -63,10 +64,13 @@
                 $_SESSION['cart_items'][]= $cartArray;
                 $successMsg = true;
             }
-            echo '<script>alert("Product added to cart!")</script>';
+            echo '<script>alert("Product added to cart!"); location.href="single_prod.php?id='.$id_p.'"</script>';
         }
-
-        $pid = $_GET['id'];
+        if(isset($_GET['id'])){
+            $pid = $_GET['id'];
+        }else{
+            $pid = $_POST['id'];
+        }
         global $con;
         $sql = "select 
                     products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
@@ -101,7 +105,7 @@
                             <h2 class="title"><span class="text-mark">Product</span> Details</h2>
                         </div>
                         <ul class="breadcrumb-nav">
-                            <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                            <li><a href="index.php">Shop</a></li>
                             <li>Product Details Default</li>
                         </ul>
                     </div>
@@ -167,6 +171,7 @@
                                                   
                                                     <input type="number"  name="product_qty" id="productQty" value="1"  min="1" max="1000" value="1">
                                                     <input type="hidden" name="p_id" value="<?php echo $row['p_id']?>" >
+                                                    <input type="hidden" name="id" value="<?php echo $pid?>" >
                                                    
                                                 </div>
                                             
