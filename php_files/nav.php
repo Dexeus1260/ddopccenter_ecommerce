@@ -188,12 +188,15 @@
             </div>
 
             <div class="header-event mobile-search my-5">
-                <div class="search-event">
-                    <input class="header-search" type="search">
-                    <button class="header-search-btn" type="submit"><img src="assets/images/icons/icon-search.svg" alt=""></button>
-                </div>
+                     <form action="search.php" method="GET">
+                           <div class="search-event">
+                                <input class="header-search" type="search" name="search" placeholder="Search">
+                                <button class="header-search-btn" type="submit"><img src="assets/images/icons/icon-search.svg" alt=""></button>
+                            </div>
             </div>
 
+     
+                           
             <!-- Start Offcanvas Mobile Menu Wrapper -->
             <div class="offcanvas-mobile-menu-wrapper">
                 <!-- Start Mobile Menu  -->
