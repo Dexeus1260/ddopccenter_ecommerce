@@ -28,7 +28,7 @@
                                         <tr>
                                            
                                             <th>Sub-category Name</th>
-                                            <th>Category Name</th>
+                                            <th>Brand Name</th>
                                             <th style="width: 20%;"  >Operations</th>
                                            
                                         </tr>
@@ -38,7 +38,7 @@
                                             <?php while($row=mysqli_fetch_assoc($value)){
                                             ?>
                                             <td><?php echo $row['sub_cat_title'];?></td>
-                                            <td ><?php echo $row['cat_name'];?></td>
+                                            <td ><?php echo $row['brand_title'];?></td>
                                             <!-- <td>Asus</td> -->
                                          
                                             <td >
@@ -70,7 +70,7 @@
                                                     <div class="block block-rounded">
                                                         <div class="block-content block-content-full">
                                                             <?php     
-                                                                $parent = manage_cat();   
+                                                                $parent = manage_brands();   
                                                                 add_sub();
                                                                 display_message();?>
                                                             <div class="items-push">
@@ -80,13 +80,13 @@
 
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label>Parent Category</label>
+                                                                        <label>Brand</label>
                                                                         <select type="text" class="form-control" name="parent_cat">
-                                                                            <option disabled> Select Category</option>
+                                                                            <option disabled> Select Brand</option>
                                                                             <?php 
                                                                             while($row=mysqli_fetch_assoc($parent)){
                                                                             ?>
-                                                                            <option value="<?php echo $row['id']?>"><?php echo $row['cat_name']?></option> 
+                                                                            <option value="<?php echo $row['brand_id']?>"><?php echo $row['brand_title']?></option> 
                                                                              <?php } ?>   
                                                                               
 

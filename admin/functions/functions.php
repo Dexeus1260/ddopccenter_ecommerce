@@ -121,7 +121,7 @@ function add_category()
 
             if($result)
             {
-                echo   '<script>confirm("Category Successfully Added!"); location.href="categories.php";</script>';
+                echo   '<script>alert("Category Successfully Added!"); location.href="categories.php";</script>';
                 // header("location: categories.php");
                 // set_message(display_success('Category Successfully Added!'));
                 // echo "<a href='categories.php' class='btn btn-success mb-3'> View Category </a>"; 
@@ -181,7 +181,9 @@ function add_sub()
 function manage_sub()
 {
     global $con;
-    $sql = "select sub_cat.sub_cat_id, sub_cat.sub_cat_title,sub_cat.cat_parent, categories.cat_name, categories.id FROM categories JOIN sub_cat ON sub_cat.cat_parent = categories.id";
+    // $sql = "select sub_cat.sub_cat_id, sub_cat.sub_cat_title,sub_cat.cat_parent, categories.cat_name, categories.id FROM categories JOIN sub_cat ON sub_cat.cat_parent = categories.id";
+    $sql = "select sub_cat.sub_cat_id, sub_cat.sub_cat_title,sub_cat.cat_parent, brand.brand_title, brand.brand_id FROM brand JOIN sub_cat ON sub_cat.cat_parent = brand.brand_id;";
+
 
     return mysqli_query($con,$sql);
 }
