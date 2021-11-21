@@ -39,9 +39,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Category:</h6>
+                <a class="collapse-item" href="brands.php">Brands</a>
                 <a class="collapse-item" href="categories.php">Categories</a>
                 <a class="collapse-item" href="sub_cat.php">Sub-categories</a>
-                <a class="collapse-item" href="brands.php">Brands</a>
             </div>
         </div>
     </li>
