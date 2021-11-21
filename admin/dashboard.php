@@ -5,6 +5,16 @@
       {
           header("location: index.php");
       }
+
+      global $con;
+      $q = "select sum(total_amount) as count from order_products";
+      $res = mysqli_query($con,$q);
+      $total_sale = 0; 
+      while($row=mysqli_fetch_assoc($res))
+      {
+        $total_sale += $row['count'];
+      }
+
 ?>
    
 
@@ -49,6 +59,7 @@
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
+                      
                         <div class="col-xl-6 col-md-12 mb-4">
                             <div class="card border-left-success shadow py-2" style="height: 200px;">
                                 <div class="card-body">
@@ -56,8 +67,9 @@
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                             <a href="orders.php" class="nav-link"> Total Sales</a></div>
-                                            <div class="h1 mb-0 font-weight-bold text-gray-800">₱<?php echo number_format($_SESSION['sales']); ?></div>
+                                            <div class="h1 mb-0 font-weight-bold text-gray-800">₱<?php echo number_format($total_sale);?></div>
                                         </div>
+                                       
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-9x text-gray-300"></i>
                                         </div>
@@ -65,6 +77,7 @@
                                 </div>
                             </div>
                         </div>
+                   
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-6 col-md-12 mb-4">
