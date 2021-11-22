@@ -1,8 +1,8 @@
 <?php 
 require_once 'php_files/header.php';
 
-$cat_id = $_POST['cat_id'];
-$sql = "select * from sub_cat where cat_parent = '$cat_id'";
+$brand_id = $_POST['brand_id'];
+$sql = "select * from sub_cat where cat_parent = '$brand_id' order by sub_cat_title asc";
 $result = mysqli_query($con,$sql);
 
 ?>

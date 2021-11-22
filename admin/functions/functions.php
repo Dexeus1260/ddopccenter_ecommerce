@@ -60,6 +60,17 @@ function login()
 }
 
 //cat
+function display_cat(){
+    global $con;
+    $view = "       SELECT *
+                    FROM categories
+                    GROUP BY cat_name
+                    ";
+    return mysqli_query($con,$view);
+
+}
+
+//cat
 function manage_cat(){
     global $con;
     $view = "select categories.cat_name,categories.brand,categories.id,brand.brand_title FROM categories JOIN  brand on brand.brand_id = categories.brand";
@@ -192,7 +203,7 @@ function manage_sub()
 function manage_brands()
 {
     global $con;
-    $sql = "select * from brand";
+    $sql = "select * from brand order by brand_title asc";
     return mysqli_query($con,$sql);
 }
 
@@ -271,7 +282,7 @@ function q_product(){
             LEFT join brand
             on brand.brand_id = products.brand
             GROUP BY products.p_id
-    
+         
             ";
 
 
@@ -279,6 +290,7 @@ function q_product(){
 
     return mysqli_query($con,$sql);
 }
+
 
 
 // manage prod cat,sub,brand

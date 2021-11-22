@@ -96,7 +96,7 @@
                                                                     <label for="val-username">Brand</span></label>
                                                                     <?php save_products(); display_message() ?> 
                                                                         <select name="brand_N" class="form-control" id="brand_select" required>
-                                                                        <option selected disabled value="" > Select Category</option>
+                                                                        <option selected disabled value="" > Select Brand</option>
                                                                                     <?php 
                                                                                         while($row = mysqli_fetch_assoc($brand))
                                                                                         {
@@ -195,9 +195,9 @@ $('document').ready(function()
 
     $('#cat_select').on('change',function()
     {
-        var cat_id = this.value;
+        var brand_id = this.value;
         $.ajax({
-            url: "get_sub_cat.php", type: "POST", data: { cat_id : cat_id},
+            url: "get_sub_cat.php", type: "POST", data: { brand_id : brand_id},
             cache: false, success: function(result){
                 $("#sub_cat_select").html(result);
             }

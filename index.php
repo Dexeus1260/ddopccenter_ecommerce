@@ -172,7 +172,7 @@
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all" type="button">All</button>
                                 </li>
 
-                                <?php $res= manage_cat();
+                                <?php $res = display_cat();
                                     while($row=mysqli_fetch_assoc($res)){
                                         ?>
                                 <li class="nav-item" role="presentation">
