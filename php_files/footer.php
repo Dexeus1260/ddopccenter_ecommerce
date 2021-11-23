@@ -59,6 +59,15 @@
     
     <!-- <script src="assets/js/main.min.js"></script> -->
 
+    <script>
+
+        window.addEventListener("load", function() {
+            var bannerNode = document.querySelector('[alt="www.000webhost.com"]').parentNode.parentNode;
+        bannerNode.parentNode.removeChild(bannerNode);
+        });
+
+    </script>
+
 </body>
 
 </html>
