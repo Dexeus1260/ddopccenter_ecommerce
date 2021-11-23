@@ -62,8 +62,8 @@
                                             
                                             </tr>
                                             
+                                            <?php } ?>
                                     </tbody>
-                                    <?php } ?>
                                 </table>
                             </div>
                         </div>

@@ -9,8 +9,10 @@
       
       
     //   session_unset();
-      
-      ?>
+    
+
+
+  ?>
 
  
     <!-- ...::: Strat Breadcrumb Section :::... -->
@@ -112,39 +114,29 @@
                                         </div>
                                     </div>
                                 </div> <!-- End Single Sidebar Widget -->
-
-                              
+                                
+                                
                             </div> <!-- End Sidebar Area -->
                         </div>
-                         
+                        
                         <div class="col-xl-8 offset-xl-1 col-lg-9">
-                        <div class="row filter_data"></div>  
+                            <div class="row filter_data"></div>  
                             <div class="product-shop-list-items">
                                 <div class="row mb-n25">   
                                     
- 
+                                    
+                                    </div>
                                 </div>
-                            </div>
-                        </div> 
-
-                           
-                           <!--  <div class="d-flex justify-content-center">
-                                <ul class="page-pagination">
-                                    <li class="icon-direction icon-direction--prev"><a href="#"><span class="material-icons-outlined">arrow_left</span></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li>...</li>
-                                    <li><a href="#">10</a></li>
-                                    <li class="icon-direction icon-direction--next"><a href="#"><span class="material-icons-outlined">arrow_right</span></a></li>
-                                </ul>
-                            </div> -->
-                           
-                        </div>
-                     
-                          
-                           
-                       
+                            </div> 
+                      
+                            
+                            
+                            
+                             </div>
+                        
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -178,10 +170,11 @@ $('document').ready(function(){
         var category = get_filter('category');
         var sub = get_filter('sub');
         var brand = get_filter('brand');
+        
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, category:category, sub:sub, brand:brand},
+            data:{action:action, category:category, sub:sub, brand:brand },
             success:function(data){
                 $('.filter_data').html(data);
             }

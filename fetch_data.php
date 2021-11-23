@@ -2,9 +2,12 @@
 
 require_once 'admin/functions/config.php';
 
+
+	
+
 if(isset($_POST["action"]))
 {
-	global $con;
+	
 	$query = "
 	select 
             products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
@@ -19,8 +22,8 @@ if(isset($_POST["action"]))
             on categories.id = products.category_name
             LEFT join brand
             on brand.brand_id = products.brand
-            GROUP BY products.p_id
-         
+            ORDER BY p_id ASC
+            limit 12
 
 			";
 	
@@ -90,7 +93,7 @@ if(isset($_POST["action"]))
 	}
 
 	$res = mysqli_query($con,$query);
-	var_dump($res) ;
+	// var_dump($res) ;
 	
 	if(mysqli_num_rows($res) != 0)
 	{
@@ -124,12 +127,13 @@ if(isset($_POST["action"]))
 			
 		}
 
+			
 	}
 	else
 	{
 		echo '<h3>No Data Found</h3>';
 	}
-	
+			
 }
 
 ?>
