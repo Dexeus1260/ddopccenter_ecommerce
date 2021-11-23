@@ -39,7 +39,7 @@
                                                             <h2 class="title">Best PC Parts Shop </h2>
                                                             <p>The one and only online PC shopping center </p>
                                                             <p>in Davao de Oro </p>
-                                                            <a href="#" class="btn btn-lg btn-default">BUY NOW</a>
+                                                            <a href="product_page.php" class="btn btn-lg btn-default">BUY NOW</a>
                                                         </div>
                                                     </div>
                                                 </div>
