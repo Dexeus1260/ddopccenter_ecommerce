@@ -193,7 +193,7 @@ $('document').ready(function()
 
     });
 
-    $('#cat_select').on('change',function()
+    $('#brand_select').on('change',function()
     {
         var brand_id = this.value;
         $.ajax({
