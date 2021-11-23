@@ -38,11 +38,11 @@
                     $qty =  $item['qty'];
                     $total_price =  $item['total_price'];
                 
-            }
+          
            
             $order = "insert into order_products (user_id, product_id, product_qty, total_amount, order_date, confirm, delivery) values ('$id','$product_id','$qty','$total_price','$date','$confirm','$delivery')";
             $res = mysqli_query($con,$order);
-
+             }
             if($res){
             unset($_SESSION['cart_items']);
             $_SESSION['confirm_order'] = true;
