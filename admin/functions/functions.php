@@ -188,6 +188,16 @@ function add_sub()
        
     }
 }
+//display sub
+function display_sub(){
+    global $con;
+    $view = "       SELECT *
+                    FROM sub_cat
+                    GROUP BY sub_cat_title
+                    ";
+    return mysqli_query($con,$view);
+
+}
 //manage sub cat
 function manage_sub()
 {

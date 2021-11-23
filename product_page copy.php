@@ -155,7 +155,7 @@
                     <div class="row justify-content-between align-items-center flex-warp">
                         <div class="col-xxl-4 col-lg-5 col-md-6 col-sm-8 col-auto me-5">
                             <div class="section-content section-content-gap-60">
-                                <h2 class="section-title">Featured Products</h2>
+                                <h2 class="section-title">Products</h2>
                               
                             </div>
                         </div>
@@ -166,7 +166,22 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                           
+                            <!-- Start Product Tab Items  -->
+                            <ul class="product-tab nav" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all" type="button">All</button>
+                                </li>
+
+                                <?php $res = display_cat();
+                                    while($row=mysqli_fetch_assoc($res)){
+                                        ?>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#men" type="button"><?php echo $row['cat_name']; ?> </button>
+                                </li>
+                                   <?php    } ?>
+                            </ul>
+                            <!-- End Product Tab Items  -->
+
                             <!-- Start Tab Content Items -->
                                            
                             <div class="tab-content">
@@ -182,26 +197,8 @@
                                                     <div class="swiper-wrapper">
                                                         <!-- Slides -->
                                                         <!-- Start Product Single Item - Style 1 -->
-                                                        <?php 
-                                                        
-                                                        global $con;
-                                                        $q = "select 
-                                                                products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
-                                                                categories.cat_name, 
-                                                                sub_cat.sub_cat_title, 
-                                                                brand.brand_title 
-                                                                
-                                                                from products 
-                                                                left join sub_cat 
-                                                                on sub_cat.sub_cat_id = products.sub_cat
-                                                                left join categories 
-                                                                on categories.id = products.category_name
-                                                                LEFT join brand
-                                                                on brand.brand_id = products.brand
-                                                                ORDER BY rand() 
-                                                                LIMIT 12";
-                                                        $res = mysqli_query($con,$q);
-                                                            while($row=mysqli_fetch_assoc($res)){
+                                                        <?php $prod = q_product();
+                                                            while($row=mysqli_fetch_assoc($prod)){
                                                         ?>
                                                         <div class="product-single-item-style-1 swiper-slide">
                                                             <a href="single_prod.php?id=<?php echo $row['p_id']?>" class="image img-responsive ">
@@ -247,7 +244,7 @@
                             <!-- End Tab Content Items -->
 
                             <div class="d-flex justify-content-center">
-                                <a href="product_page.php" class="btn btn-md btn-default btn-section-bottom">View All Product</a>
+                                <a href="shop-grid-sidebar-left.html" class="btn btn-md btn-default btn-section-bottom">View All Product</a>
                             </div>
                         </div>
                     </div>
@@ -256,7 +253,7 @@
         </div>
     </div>
     <!-- ...::: Strat Product Tab Item Section :::... -->
-<!-- ...::: Strat Company Logo Section Section :::... -->
+
 <div class="company-logo-section section-fluid-270 section-top-gap-100">
         <div class="box-wrapper">
             <div class="company-logo-wrapper">
