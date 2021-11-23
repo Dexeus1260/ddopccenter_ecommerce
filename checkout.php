@@ -1,5 +1,7 @@
 <?php require_once 'php_files/header.php';
       require_once 'php_files/nav.php'; 
+    
+    $_SESSION['checkout'] = "checkout";
 
     $user = $_SESSION['USER']; 
 
@@ -150,17 +152,26 @@
                                         foreach($_SESSION['cart_items'] as $cartItem)
                                         {
                                            
-                                            $total+=$cartItem['total_price'];
+                                         
                                         ?>
             
                                     <tbody>
                                         <tr>
                                             <td> <?php echo $cartItem['product_name'] ?> <strong> × <?php echo $cartItem['qty'] ?></strong></td>
-                                            <td> ₱<?php echo $cartItem['total_price'] ?></td>
+                                            <td> ₱<?php
+
+                                           $item_price = $cartItem['qty'] * $cartItem['product_price'];
+                                            
+                                            echo  $item_price ?></td>
+
+                                            
                                         </tr>
                                         
                                     </tbody>
-                                    <?php } ?>
+                                    <?php 
+                                   $total+=$item_price ;
+                                
+                                } ?>
                                     <tfoot>
                                        
                                         <tr>

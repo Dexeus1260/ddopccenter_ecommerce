@@ -7,13 +7,6 @@
           header("location: index.php");
       }
     //   session_destroy();
-    
-   
-
-    
-   
-     
-    
      
 ?>
 
@@ -87,7 +80,7 @@
                                    
                                         <!-- Start Cart Single Item-->
                                         <tr>
-                                            <td class="product_remove" ><a href="cart2.php?action=remove&item=<?php echo $key?>" ><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
+                                            <td class="product_remove" ><a href="cart2.php?action=remove&item=<?php echo $key?>" id="emptyCart" ><img src="assets/images/icons/icon-trash.svg" alt=""></a></td>
                                             <td class="product_thumb"><img src="admin/products/<?php echo $item['product_img'] ?>" alt=""></td>
                                             <td class="product_name"><a><?php echo $item['product_name'];?></a></td>
                                             <td class="product-price">₱<?php echo  number_format($item['product_price']);?></td>

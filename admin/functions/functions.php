@@ -296,7 +296,7 @@ function q_product(){
             ";
 
 
-    // $sql = "select * from products";
+    // $sql = "lect * from products";
 
     return mysqli_query($con,$sql);
 }
