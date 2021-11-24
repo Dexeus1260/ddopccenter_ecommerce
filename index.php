@@ -253,6 +253,7 @@
                     </div>
                 </div>
             </div>
+       
         </div>
     </div>
     <!-- ...::: Strat Product Tab Item Section :::... -->
@@ -333,7 +334,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <a href="shop-grid-sidebar-left.html" class="d-block banner-animate--wave">
+                            <a href="product_page.php" class="d-block banner-animate--wave">
                                 <img class="img-fluid" src="assets/images/banner/Free.png" width="1355" height="350" loading="lazy" alt="banner-wide-image-1">
                             </a>
                         </div>
@@ -349,3 +350,5 @@
    
 
     <?php  require_once 'php_files/footer.php'; ?>
+
+    
