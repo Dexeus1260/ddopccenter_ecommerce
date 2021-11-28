@@ -217,12 +217,11 @@
                                                                     <span class="price">₱<?php echo number_format($row['price']); ?></span>
                                                                 </div>
                                                                 <div class="bottom justify-content-center text-center">
+                                                                    <?php stars(); ?>
+                                                                   
                                                                     
-                                                                    <!-- <div class="product-event-items">
-                                                                        <a href="add_cart.php?id=<?php echo $row['p_id']?>"  class="btn cart-btn">Add to cart</a>
-                                                                        
-                                                                    </div> -->
                                                                 </div>
+                                                                
                                                                 
                                                             </div>
                                                             

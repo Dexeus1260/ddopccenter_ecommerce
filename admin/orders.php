@@ -1,10 +1,34 @@
 <?php require_once 'php_files/header.php';
       require_once 'php_files/nav.php'; 
+      
+      if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['up_status']))
+      {
+        $stat = $_POST['stat'];
+        $orderID = $_POST['o_id'];
+        
+        
+        if($stat == 'shipping')
+        {
+            global $con;
+            $sql = "update order_products set delivery = 'delivered' where order_id = '$orderID' ";
+            $res = mysqli_query($con,$sql);
+
+        }
+        else
+        {
+            // echo "error";
+           
+        }
+
+
+      }
 
       if(!isset($_SESSION['ADMIN']))
       {
           header("location: index.php");
       }
+
+      
 
       global $con;
       $sql = "select 
@@ -23,6 +47,8 @@
 
     ";
       $res = mysqli_query($con,$sql);
+
+ 
 ?>
    
 
@@ -56,13 +82,31 @@
                                     <tbody>
 
                                        <tr>
-                                            <td><?php echo $row['order_id'] ?></td>
-                                            <td><?php echo $row['product_name'] ?></td>
-                                            <td><?php echo $row['product_qty'] ?></td>
-                                            <td><?php echo $row['email'] ?></td>
-                                            <td>₱<?php echo number_format($row['total_amount']) ?></td>
-                                            <td><?php echo date('M d, Y', strtotime($row['order_date']));?></td>
-                                            <td><?php echo $row['delivery'] ?></td>
+                                          
+                                                <td><?php echo $row['order_id'] ?></td>
+                                                <td><?php echo $row['product_name'] ?></td>
+                                                <td><?php echo $row['product_qty'] ?></td>
+                                                <td><?php echo $row['email'] ?></td>
+                                                <td>₱<?php echo number_format($row['total_amount']) ?></td>
+                                                <td><?php echo date('M d, Y', strtotime($row['order_date']));?></td>
+                                                <td> 
+                                                 <form method="POST" action="#">
+                                                    <input type="hidden" value="<?php echo $row['order_id'];?>" name="o_id">
+                                                    <input type="hidden" value="<?php echo $row['delivery'];?>" name="stat">
+                                                    <button class="btn 
+                                                    <?php 
+                                                    if($row['delivery'] == 'shipping')
+                                                    {
+                                                        echo 'btn-primary';
+                                                    }else
+                                                    {
+                                                        echo 'btn-success';
+                                                    }
+                                                    ?>
+                                                    " name="up_status"><?php echo $row['delivery'] ?></button> 
+                                                
+                                                </td>
+                                                </form>
                                            
                                         </tr>
                                           <?php 

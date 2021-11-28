@@ -481,12 +481,13 @@ function admin_prod()
 {
     global $con;
     $sql="
-    select 
-            products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
+ 
+            select products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
             categories.cat_name, 
             sub_cat.sub_cat_title, 
             order_products.product_qty,
-            brand.brand_title 
+            brand.brand_title,
+            sum(order_products.product_qty) as sum
             
             from products 
             left join sub_cat 
@@ -497,11 +498,26 @@ function admin_prod()
             on brand.brand_id = products.brand
             left join order_products
             on order_products.product_id = products.p_id
+        
+            GROUP BY product_id
     ";
 
     return mysqli_query($con,$sql);
 }
 
+function stars()
+{
+    echo '
+    
+    <ul class="review-star">
+    <li class="fill"><span class="material-icons">star</span></li>
+    <li class="fill"><span class="material-icons">star</span></li>
+    <li class="fill"><span class="material-icons">star</span></li>
+    <li class="fill"><span class="material-icons">star</span></li>
+    <li class="fill"><span class="material-icons">star_half</span></li>
+    </ul>';
+
+}
 
 
 

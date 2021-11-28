@@ -93,6 +93,7 @@
                                             <th>Date</th>
                                             <th>Status</th>
                                             <th>Total</th>
+                                            <th>Review</th>
                                            
                                         </tr>
                                     </thead>
@@ -103,7 +104,12 @@
                                             <td><?php echo $row['product_name'] ?></td>
                                             <td><?php echo date('M d, Y', strtotime($row['order_date']));?></td>
                                             <td><span class="success"><?php echo $row['delivery']?></span></td>
-                                            <td>₱<?php echo number_format($row['total_amount'])?> for <?php echo $row['product_qty']?> item </td>
+                                            <td>₱<?php echo number_format($row['total_amount'])?> | <?php echo $row['product_qty']?> pcs </td>
+                                            <td>
+                                                <?php if($row['delivery'] == 'delivered'){ ?>
+                                                <a href="review.php" class="nav-link">Add review</a>
+                                                <?php } ?>
+                                            </td>
                                           
                                         </tr>
                                        <?php }?>
