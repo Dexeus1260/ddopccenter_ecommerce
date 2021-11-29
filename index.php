@@ -217,9 +217,22 @@
                                                                     <span class="price">₱<?php echo number_format($row['price']); ?></span>
                                                                 </div>
                                                                 <div class="bottom justify-content-center text-center">
-                                                                    <?php stars(); ?>
-                                                                   
+                                                                  <ul class="review-star">
+                                                                    <?php 
+                                                                    $productID = $row['p_id'];
+                                                                    $totalStar = 5;
+                                                                    $sql = "select *,avg(rating) from reviews where product_id = '$productID' ";
+                                                                    $results = mysqli_query($con,$sql);
+                                                                    $row = mysqli_fetch_assoc($results);
+                                                                    $star =round($row['avg(rating)']); 
+                                                                    for($i = 0; $i < $star; $i++)
+                                                                    {
+                                                                        echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                                                    }
                                                                     
+                                                                    ?>
+                                                                   
+                                                                    </ul>
                                                                 </div>
                                                                 
                                                                 

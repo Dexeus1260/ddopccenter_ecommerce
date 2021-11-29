@@ -505,19 +505,6 @@ function admin_prod()
     return mysqli_query($con,$sql);
 }
 
-function stars()
-{
-    echo '
-    
-    <ul class="review-star">
-    <li class="fill"><span class="material-icons">star</span></li>
-    <li class="fill"><span class="material-icons">star</span></li>
-    <li class="fill"><span class="material-icons">star</span></li>
-    <li class="fill"><span class="material-icons">star</span></li>
-    <li class="fill"><span class="material-icons">star_half</span></li>
-    </ul>';
-
-}
 
 
 

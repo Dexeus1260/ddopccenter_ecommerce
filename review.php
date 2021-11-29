@@ -7,36 +7,7 @@
         $user = $_SESSION['USER'];
          }
 
-         if(isset($_POST['save']) && isset($_POST['add_review']))
-         {
-    
-
-             $uid = $_POST['uID'];
-             $pID = $_POST['pID'];
-             $user = $_POST['user'];
-             $rev = $_POST['prov_rev'];
-             $ratedIndex = $_POST['ratedIndex'];
-             $ratedIndex++;
-          
-             if($uid === 0)
-             {
-                global $con;
-                $sql = "insert into reviews (user, product_id, rating, review) values ('$user','$pID','$ratedIndex','$rev')";
-                $res = mysqli_query($con,$sql);
-                $row = mysqli_fetch_assoc($res);
-                $uid = $row['user'];
-            }
-            else
-            {
-                $sql = "update reviews set rating = $ratedIndex where user = $uid";
-
-            }
-
-            exit(json_encode(array('user' => $uid)));
-
-
-         }
-
+         $p_id = $_GET['p_id'];
 
 
          global $con;
@@ -54,7 +25,7 @@
          on products.p_id = order_products.product_id
          left join users 
          on users.id = order_products.user_id
-         group by product_id
+         where product_id = '$p_id'
        ";
          $res = mysqli_query($con,$sql);
       
@@ -93,7 +64,7 @@
                         <div class="col-lg-12">
                             <!-- Start Product Gallert - Tab Style -->
                             <div class="product-gallery product-gallery--style-tab">
-                            <form class="user" method="POST" action="">
+                            <form  method="POST">
                                 <div class="row flex-md-row flex-column-reverse">
                                 
                                     <div class="col-md-4 ">
@@ -105,8 +76,8 @@
                                                 <div class="text-center p-4">
                                                     <h5> <?php echo $row['product_name']; ?></h5>
                                                 </div>
-                                                <input class="form-control" type="hidden" name="pID" value="<?php echo $row['p_id'] ?>">
-                                                <input class="form-control" type="hidden" name="user" value="<?php echo $row['user_id'] ?>">
+                                                <input class="form-control" type="hidden" id="pID" value="<?php echo $row['p_id'] ?>">
+                                                <input class="form-control" type="hidden" id="user" value="<?php echo $row['user_id'] ?>">
                                             </div>
                                         <?php } ?>        
                                     </div>
@@ -124,13 +95,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <h6 class="title mt-4">Add Review</h6>
-                                                    <textarea class="form-control" name="prod_rev" rows="3" required></textarea>
+                                                    <textarea class="form-control" id="prod_rev" rows="3" required></textarea>
                                                    
                                                 </div>
                                                 <div class="form-group mt-3">
-                                                    <button class="btn btn-primary" name="add_review" type="submit">Submit</button>  
+                                                    <button class="btn btn-primary" id="add_review" type="submit" name="add_r">Submit</button>  
                                                 </div>  
-                                            </form>
+                                          </form>
                                         </div>
                                     </div>
 
@@ -166,16 +137,16 @@
 
 <script>
 
-var ratedIndex = -1, uID = 0;
+var ratedIndex = -1;
+
 $('document').ready(function(){
     resetStar();
-    if(localStorage.getItem('ratedIndex') != null)
-        setStar(parseInt(localStorage.getItem('ratedIndex')));
-
+   
     $('.material-icons').on('click', function(){
         ratedIndex =parseInt($(this).data('index'))
-        localStorage.setItem('ratedIndex', ratedIndex);
         saveToDB();
+        
+       
     });
     $('.material-icons').mouseover(function(){
         resetStar();    
@@ -203,19 +174,28 @@ function resetStar(){
 
 function saveToDB()
 {
-    $.ajax({
-        url: "review.php",
-        method: "POST",
-        dataType: "json",
-        data: {
-            save: 1,
-            uID: uID,
-            rateIndex: ratedIndex
-        }, success: function(r)
-        {
-            uID = r.uID;
-        }
-    });
+    $("form").submit(function (e) {
+            e.preventDefault();
+
+
+            $.ajax({
+                url: "review_process.php",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    save: 1,
+                    ratedIndex: ratedIndex,
+                    userId: $('#user').val(),
+                    pID: $('#pID').val(),
+                    rev: $('#prod_rev').val(),
+                  
+                  }
+            });
+            alert("Review added! Thank you.");
+            window.location.href="profile.php";
+        });
+      
+        
 }
 
 </script>

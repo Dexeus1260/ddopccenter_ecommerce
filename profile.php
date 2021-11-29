@@ -6,7 +6,7 @@
          }else{
         $user = $_SESSION['USER'];
          }
-      
+         
         global $con;
         $user=$_SESSION['USER'];
         $sql="select * from users where  email = '$user' || username = '$user' ";
@@ -106,9 +106,22 @@
                                             <td><span class="success"><?php echo $row['delivery']?></span></td>
                                             <td>₱<?php echo number_format($row['total_amount'])?> | <?php echo $row['product_qty']?> pcs </td>
                                             <td>
-                                                <?php if($row['delivery'] == 'delivered'){ ?>
-                                                <a href="review.php" class="nav-link">Add review</a>
-                                                <?php } ?>
+                                                <?php if($row['delivery'] == 'delivered'){
+                                                    global $con;
+                                                    $user = $row['user_id'];
+                                                    $p_id = $row['product_id'];
+                                                    $sql = "select * from reviews where user_id = '$user' and product_id = '$p_id' group by product_id";
+                                                    $qres = mysqli_query($con,$sql);
+
+                                                    if(mysqli_fetch_assoc($qres))
+                                                    {
+                                                        echo  '<h5>Reviewed</h5>';
+                                                    }else
+                                                    {
+                                                      echo '<a href="review.php?p_id='.$row['product_id'].'" class="nav-link"><h5>Add review</h5></a>';
+                                                    }
+
+                                                } ?>
                                             </td>
                                           
                                         </tr>
