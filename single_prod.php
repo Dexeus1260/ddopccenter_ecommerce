@@ -159,6 +159,26 @@
                                 $cat = $row['category_name']?>
                                 <h2 class="title"><?php echo $row['product_name'] ?></h2>
                                 <span class="author">Brand: <?php echo $row['brand_title'] ?></span>
+                                <span class="author"> 
+                                    <div class="bottom ">
+                                        <ul class="review-star">
+                                        <?php 
+                                        $productID = $row['p_id'];
+                                        $totalStar = 5;
+                                        $q = "select *,avg(rating) from reviews where product_id = '$productID' ";
+                                        $results = mysqli_query($con,$q);
+                                        $row2 = mysqli_fetch_assoc($results);
+                                        $star =round($row2['avg(rating)']); 
+                                        for($i = 0; $i < $star; $i++)
+                                        {
+                                            echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                        }
+                                        
+                                        ?>
+                                        
+                                        </ul>
+                                    </div>
+                                </span>
  
                                 <span class="price">₱<?php echo number_format($row['price'])?></del></span>  
                                 </div>
@@ -167,9 +187,9 @@
                                 <form class="form-inline" method="POST" action="#">      
                                         <li class="variable-single-items">
                                            
-                                                <div class="form_group default-form-box">
+                                                <div class="form_group default-form-box" style="width: 166px;">
                                                   
-                                                    <input type="number"  name="product_qty" id="productQty" value="1"  min="1" max="1000" value="1">
+                                                    <input type="number"  name="product_qty" id="productQty" value="1"  min="1" max="1000" value="1" class="text-center">
                                                     <input type="hidden" name="p_id" value="<?php echo $row['p_id']?>" >
                                                     <input type="hidden" name="id" value="<?php echo $pid?>" >
                                                    
@@ -200,15 +220,70 @@
                             <div class="product-description-content">
                                 <h6 class="title">Description</h6>
                                 <p><?php echo $row['description'] ?> </p>
-
-                               
-
                                 
                             </div>
 
                             <?php } ?>
                         </div>
+
+                        <div class="col-xl-8 col-lg-10 mt-5">
+                            <div class="product-description-content">
+                                <h6 class="title">Reviews</h6>
+
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-10 ">
+                                            <hr/>
+                                                <div class="review-block">
+                                                    <div class="row">
+                                                        <?php 
+                                                            global $con;
+                                                            $sql = "select reviews.user_id,reviews.product_id,reviews.rating,reviews.review,users.email
+                                                                    from reviews
+                                                                    left join users
+                                                                    on reviews.user_id = users.id
+                                                                    where product_id = '$productID'";
+                                                            $review = mysqli_query($con,$sql);
+                                                            while($row = mysqli_fetch_assoc($review)){
+                                                            ?>
+                                                        <div class="col-sm-5">
+                                                            <div class="review-block-name">By <?php echo $row['email'] ?> :</div>
+                                                        </div>
+                                                        <div class="col-sm-7">
+                                                            <div class="bottom">
+                                                                <ul class="review-star">
+                                                                        <?php 
+                                                                        $totalStar = 5;
+                                                                        $q = "select * from reviews where product_id = '$productID' and user_id = ".$row['user_id']."";
+                                                                        $results = mysqli_query($con,$q);
+                                                                        $row2 = mysqli_fetch_assoc($results);
+                                                                        $star = $row2['rating']; 
+                                                                        for($i = 0; $i < $star; $i++)
+                                                                        {
+                                                                            echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                                                        }
+                                                                        ?>
+                                                                </ul>
+
+                                                                
+                                                                <div class="review-block-description text-center"><em>"<?php echo $row['review']; ?>"</em></div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                      
+                                                                        
+                                                         <hr/>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

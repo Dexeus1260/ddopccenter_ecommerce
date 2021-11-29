@@ -7,8 +7,12 @@
         $user = $_SESSION['USER'];
          }
 
+         if(isset($_GET['p_id']) && isset($_GET['user'])){
+         $user = $_GET['user'];
          $p_id = $_GET['p_id'];
-
+        }else{
+            header("location: profile.php");
+        }
 
          global $con;
          $sql = "select 
@@ -25,7 +29,8 @@
          on products.p_id = order_products.product_id
          left join users 
          on users.id = order_products.user_id
-         where product_id = '$p_id'
+         where product_id = '$p_id' and user_id = '$user'
+         group by product_id
        ";
          $res = mysqli_query($con,$sql);
       
@@ -191,6 +196,7 @@ function saveToDB()
                   
                   }
             });
+            $("form")[0].reset();
             alert("Review added! Thank you.");
             window.location.href="profile.php";
         });

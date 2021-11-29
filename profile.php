@@ -118,7 +118,7 @@
                                                         echo  '<h5>Reviewed</h5>';
                                                     }else
                                                     {
-                                                      echo '<a href="review.php?p_id='.$row['product_id'].'" class="nav-link"><h5>Add review</h5></a>';
+                                                      echo '<a href="review.php?p_id='.$row['product_id'].'&user='.$row['user_id'].'" class="nav-link"><h5>Add review</h5></a>';
                                                     }
 
                                                 } ?>

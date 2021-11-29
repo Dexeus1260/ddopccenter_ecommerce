@@ -19,7 +19,7 @@
                global $con;
                $sql = "insert into reviews (user_id, product_id, rating, review) values ('$user','$pID','$ratedIndex','$rev')";
                $res = mysqli_query($con,$sql);
-
+               
            }else
            {
                echo "mali1";
