@@ -155,6 +155,7 @@
                             <div class="product-content">
                                 <span class="catagory"><?php echo $row['cat_name'] ?> </span>
                                 <?php 
+                                $starR = '';
                                 $id=$row['p_id'];
                                 $cat = $row['category_name']?>
                                 <h2 class="title"><?php echo $row['product_name'] ?></h2>
@@ -168,8 +169,8 @@
                                         $q = "select *,avg(rating) from reviews where product_id = '$productID' ";
                                         $results = mysqli_query($con,$q);
                                         $row2 = mysqli_fetch_assoc($results);
-                                        $star =round($row2['avg(rating)']); 
-                                        for($i = 0; $i < $star; $i++)
+                                        $starR =round($row2['avg(rating)']); 
+                                        for($i = 0; $i < $starR; $i++)
                                         {
                                             echo '<li class="fill"><span class="material-icons">star</span></li>';
                                         }
@@ -225,11 +226,121 @@
 
                             <?php } ?>
                         </div>
+                         <?php 
+                          $ratingNumber = 0;
+                          $fiveStarRating = 0;
+                          $fourStarRating = 0;
+                          $threeStarRating = 0;
+                          $twoStarRating = 0;
+                          $oneStarRating = 0;	
+                          global $con;
+                          $query = "select reviews.user_id,reviews.product_id,reviews.rating,reviews.review,users.email
+                                  from reviews
+                                  left join users
+                                  on reviews.user_id = users.id
+                                  where product_id = '$productID' ";
+                          $item = mysqli_query($con,$query);
+                        
+                          foreach($item as $rate)
+                          {
+                            if($rate['rating'] == 5) {
+                                $fiveStarRating +=1;
+                            } else if($rate['rating'] == 4) {
+                                $fourStarRating +=1;
+                            } else if($rate['rating'] == 3) {
+                                $threeStarRating +=1;
+                            } else if($rate['rating'] == 2) {
+                                $twoStarRating +=1;
+                            } else if($rate['rating'] == 1) {
+                                $oneStarRating +=1;
+                            }
+                          }
+
+                        $fiveStarRatingPercent = round(($fiveStarRating/5)*100);
+                        $fiveStarRatingPercent = !empty($fiveStarRatingPercent)?$fiveStarRatingPercent.'%':'0%';	
+                        
+                        $fourStarRatingPercent = round(($fourStarRating/5)*100);
+                        $fourStarRatingPercent = !empty($fourStarRatingPercent)?$fourStarRatingPercent.'%':'0%';
+                        
+                        $threeStarRatingPercent = round(($threeStarRating/5)*100);
+                        $threeStarRatingPercent = !empty($threeStarRatingPercent)?$threeStarRatingPercent.'%':'0%';
+                        
+                        $twoStarRatingPercent = round(($twoStarRating/5)*100);
+                        $twoStarRatingPercent = !empty($twoStarRatingPercent)?$twoStarRatingPercent.'%':'0%';
+                        
+                        $oneStarRatingPercent = round(($oneStarRating/5)*100);
+                        $oneStarRatingPercent = !empty($oneStarRatingPercent)?$oneStarRatingPercent.'%':'0%';
+                         ?>
+
+
+
 
                         <div class="col-xl-8 col-lg-10 mt-5">
                             <div class="product-description-content">
                                 <h6 class="title">Reviews</h6>
-
+                                     <p class="bold padding-bottom-7"><h5>Average Rating:</h5><h2><?php echo round($starR); ?> <small>/ 5</small></h2> </p>  
+                                   <div  class="row">
+                                     <div class="col-sm-3">
+                                        <div class="pull-start">
+                                                <div class="pull-left" style="width:35px; line-height:1;">
+                                                    <div style="height:9px; margin:5px 0;">5</div>
+                                                </div>
+                                                <div class="pull-star" style="width:180px;">
+                                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo $fiveStarRatingPercent; ?>">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <div class="pull-star">
+                                                <div class="pull-star" style="width:35px; line-height:1;">
+                                                    <div style="height:9px; margin:5px 0;">4</div>
+                                                </div>
+                                                <div class="pull-star" style="width:180px;">
+                                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo $fourStarRatingPercent; ?>">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-star">
+                                                <div class="pull-start" style="width:35px; line-height:1;">
+                                                    <div style="height:9px; margin:5px 0;">3</div>
+                                                </div>
+                                                <div class="pull-left" style="width:180px;">
+                                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo $threeStarRatingPercent; ?>">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-star">
+                                                <div class="pull-start" style="width:35px; line-height:1;">
+                                                    <div style="height:9px; margin:5px 0;">2</div>
+                                                </div>
+                                                <div class="pull-start" style="width:180px;">
+                                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo $twoStarRatingPercent; ?>">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pull-left">
+                                                <div class="pull-start" style="width:35px; line-height:1;">
+                                                    <div style="height:9px; margin:5px 0;">1</div>
+                                                </div>
+                                                <div class="pull-start" style="width:180px;">
+                                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: <?php echo $oneStarRatingPercent; ?>">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                        
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-10 ">
                                             <hr/>
@@ -243,6 +354,7 @@
                                                                     on reviews.user_id = users.id
                                                                     where product_id = '$productID'";
                                                             $review = mysqli_query($con,$sql);
+
                                                             while($row = mysqli_fetch_assoc($review)){
                                                             ?>
                                                         <div class="col-sm-5">
