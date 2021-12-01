@@ -170,9 +170,19 @@
                                         $results = mysqli_query($con,$q);
                                         $row2 = mysqli_fetch_assoc($results);
                                         $starR =round($row2['avg(rating)']); 
-                                        for($i = 0; $i < $starR; $i++)
+                                        if(!empty($row2['rating']))
                                         {
-                                            echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                            for($i = 0; $i < $starR; $i++)
+                                            {
+                                                echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                            }
+                                        }else{
+                                            for($i = 0; $i < 5; $i++)
+                                            {
+                                                echo '<li class="fill"><span class="material-icons-outlined">star_rate</span></li>';
+                                            }
+                                            
+                                            
                                         }
                                         
                                         ?>

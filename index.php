@@ -225,11 +225,21 @@
                                                                     $results = mysqli_query($con,$sql);
                                                                     $row = mysqli_fetch_assoc($results);
                                                                     $star =round($row['avg(rating)']); 
-                                                                    for($i = 0; $i < $star; $i++)
+
+                                                                    if(!empty($row['rating']))
                                                                     {
-                                                                        echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                                                        for($i = 0; $i < $star; $i++)
+                                                                        {
+                                                                            echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                                                        }
+                                                                    }else{
+                                                                        for($i = 0; $i < 5; $i++)
+                                                                        {
+                                                                            echo '<li class="fill"><span class="material-icons-outlined">star_rate</span></li>';
+                                                                        }
+                                                                       
+                                                                        
                                                                     }
-                                                                    
                                                                     ?>
                                                                    
                                                                     </ul>

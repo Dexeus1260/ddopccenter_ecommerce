@@ -137,8 +137,10 @@
                             <h5 class="billing-address">Username: <strong><?php echo $row['username'] ?></strong></h5>
                             <h5 class="billing-address">Address: <strong><?php echo $row['address'] ?></strong></h5>
                             <h5 class="billing-address">Mobile: <strong><?php echo $row['mobile'] ?></strong></h5>
+                           
+                            <a href="#edit_profile<?php echo $row['id']?>" class="view" data-bs-toggle="modal">Edit</a>
+                            <?php include('profile_modal.php');?>
                             <?php } ?>
-                            <a href="#" class="view">Edit</a>
                         </div>
 
                         
@@ -161,7 +163,7 @@
                     </div>
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
                         <a class="btn btn-primary" href="admin/user_logout.php">Logout</a>
                     </div>
                 </div>
