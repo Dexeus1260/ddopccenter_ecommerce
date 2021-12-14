@@ -9,7 +9,21 @@
       }else{
           global $con;
           $search = safe_value($con,$_GET['search']);
-          $sql = "select * from products where product_name like '$search%'";
+        //   $sql = "select * from products where product_name like '$search%'";
+        $sql = "select 
+                                                                products.p_id,products.product_name, products.sub_cat,products.brand ,products.description,products.category_name,products.price,products.qty,products.image,
+                                                                categories.cat_name, 
+                                                                sub_cat.sub_cat_title, 
+                                                                brand.brand_title 
+                                                                
+                                                                from products 
+                                                                left join sub_cat 
+                                                                on sub_cat.sub_cat_id = products.sub_cat
+                                                                left join categories 
+                                                                on categories.id = products.category_name
+                                                                LEFT join brand
+                                                                on brand.brand_id = products.brand
+                                                                where products.product_name LIKE '%$search%'";
           $res = mysqli_query($con,$sql);
             
    
@@ -84,13 +98,34 @@
                                                     <h4 class="title"><a href="product-details-default.html"><?php echo $row['product_name'] ?></a></h4>
                                                     <span class="price"><? echo number_format($row['price']) ?></span>
                                                 </div>
-                                                <div class="bottom justify-content-center text-center">
-                                                   
-                                                    <div class="product-event-items">
-                                                        <a href="cart.html" class="btn cart-btn">Add to cart</a>
-                                                      
-                                                    </div>
-                                                </div>
+                                                 <div class="bottom justify-content-center text-center">
+                                                                  <ul class="review-star">
+                                                                    <?php 
+                                                                    $productID = $row['p_id'];
+                                                                    $totalStar = 5;
+                                                                    $q = "select *,avg(rating) from reviews where product_id = '$productID' ";
+                                                                    $results = mysqli_query($con,$q);
+                                                                    $row2 = mysqli_fetch_assoc($results);
+                                                                    $star =round($row2['avg(rating)']); 
+
+                                                                    if(!empty($row2['rating']))
+                                                                    {
+                                                                        for($i = 0; $i < $star; $i++)
+                                                                        {
+                                                                            echo '<li class="fill"><span class="material-icons">star</span></li>';
+                                                                        }
+                                                                    }else{
+                                                                        for($i = 0; $i < 5; $i++)
+                                                                        {
+                                                                            echo '<li class="fill"><span class="material-icons-outlined">star_rate</span></li>';
+                                                                        }
+                                                                       
+                                                                        
+                                                                    }
+                                                                    ?>
+                                                                   
+                                                                    </ul>
+                                                                </div>
 
                                             </div>
                                          

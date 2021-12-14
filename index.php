@@ -12,6 +12,7 @@
       
       ?>
 
+
  <!-- ...::: Strat Hero Slider Section :::... -->
  <div class="hero-slider-section hero-slider-light section-fluid-270">
         <div class="box-wrapper">

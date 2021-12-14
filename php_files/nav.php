@@ -1,5 +1,5 @@
-  <!-- .....:::::: Start Header Section - Dark Header :::::.... -->
-  <header class="header-section pos-absolute dark-bg sticky-header d-none d-lg-block " style="padding-left: 20%;padding-right:20%;">
+<!-- .....:::::: Start Header Section - Dark Header :::::.... -->
+  <header class="header-section pos-absolute dark-bg sticky-header d-none d-lg-block " style="padding-left: 20%;padding-right:20%;" >
         <div class="header-wrapper pos-relative">
             <div class="container-fluid">
                 <div class="row justify-content-between align-items-center">
@@ -38,7 +38,7 @@
                     <div class="col-auto">
                         <div class="header-action">
                             <!-- <button class="header-action-item header-action-wishlist" data-bs-toggle="offcanvas" data-bs-target="#addcartOffcanvas"><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""></button> -->
-                            <a href="cart2.php" class="header-action-item header-action-wishlist " style="margin-top: 12px;" ><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""><span id="count">  
+                            <a href="cart2.php" class="header-action-item header-action-wishlist " style="margin-top: 8px;" ><img src="assets/images/icons/icon-shopping-bag-light.svg" alt=""><span id="count">  
                                  <?php echo (isset($_SESSION['cart_items']) && count($_SESSION['cart_items'])) > 0 ? count($_SESSION['cart_items']):'';?></span></a>
                             <?php 
                             if(isset($_SESSION['USER'])){

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/css/vendor/material-icons.css">
     <link rel="stylesheet" href="assets/css/vendor/jquery-ui.min.css">
 
+    <script src="../assets/js/PureSnow.js"></script>
+    
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/css/plugins/animate.css">
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
@@ -37,8 +39,11 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/snow.css">
   
 
 </head>
 
-<body>
+<div id="snowflakeContainer">
+  <span class="snowflake"></span>
+</div>
