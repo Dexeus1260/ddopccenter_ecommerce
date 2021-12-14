@@ -142,9 +142,21 @@
     </div>
     <!-- ...::: End Shipping Section :::... -->
 
-    <!-- ...::: Strat Banner Card Section Section :::... -->
-    
-    <!-- ...::: End Banner Card Section Section :::... -->
+    <div class="banner-card-section section-fluid-270 section-top-gap-100">
+        <div class="box-wrapper">
+            <div class="banner-car-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="product_page.php" class="d-block banner-animate--wave">
+                                <img class="img-fluid" src="assets/images/xmas.png" width="1355" height="350" loading="lazy" alt="banner-wide-image-1">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     
 

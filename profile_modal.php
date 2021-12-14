@@ -1,6 +1,6 @@
 <?php 
 
-if(!isset($_SESSION['ADMIN']))
+if(!isset($_SESSION['USER']))
       {
           header("location: index.php");
       }

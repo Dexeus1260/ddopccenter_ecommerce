@@ -30,7 +30,7 @@
                             <h2 class="title"><span class="text-mark">Account</span> Dashboard</h2>
                         </div>
                         <ul class="breadcrumb-nav">
-                            <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                            <li><a href="index.php">Shop</a></li>
                             <li>My Account</li>
                         </ul>
                     </div>
@@ -112,6 +112,7 @@
                                                     $p_id = $row['product_id'];
                                                     $sql = "select * from reviews where user_id = '$user' and product_id = '$p_id' group by product_id";
                                                     $qres = mysqli_query($con,$sql);
+                                                    
 
                                                     if(mysqli_fetch_assoc($qres))
                                                     {
@@ -121,7 +122,10 @@
                                                       echo '<a href="review.php?p_id='.$row['product_id'].'&user='.$row['user_id'].'" class="nav-link"><h5>Add review</h5></a>';
                                                     }
 
-                                                } ?>
+                                                    }
+                                                    else{
+                                                        echo "Not yet Delivered";
+                                                    } ?>
                                             </td>
                                           
                                         </tr>

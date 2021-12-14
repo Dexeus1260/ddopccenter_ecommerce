@@ -86,7 +86,7 @@
                                         <!-- Start Product Single Item - Style 1 -->
                                       
                                         <div class="product-single-item-style-1">
-                                            <a href="product-details-default.html" class="image img-responsive">
+                                        <a href="single_prod.php?id=<?php echo $row['p_id']?>" class="image img-responsive ">
                                                 <img class="img-fluid" src="admin/products/<?php echo $row['image']?>" width="435" height="350" alt="">
                                                 <!-- <ul class="tooltip-tag-items">
                                                     <li class="color-green">15%</li>
@@ -95,7 +95,7 @@
                                             <div class="content justify-content-center text-center">
                                                 <div class="top">
                                                    
-                                                    <h4 class="title"><a href="product-details-default.html"><?php echo $row['product_name'] ?></a></h4>
+                                                <h4 class="title"><a href="single_prod.php?id=<?php echo $row['p_id']?>"><?php echo $row['product_name'] ?></a></h4>
                                                     <span class="price"><? echo number_format($row['price']) ?></span>
                                                 </div>
                                                  <div class="bottom justify-content-center text-center">

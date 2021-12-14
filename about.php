@@ -8,14 +8,13 @@
   <div class="breadcrumb-section">
         <div class="box-wrapper">
             <div class="breadcrumb-wrapper breadcrumb-wrapper--style-2 breadcrumb-bg pos-relative" style="background-color: #4cfcb6;">
-                <div class=""></div>
                 <div class="breadcrumb-content section-fluid-270">
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-xl-5 col-md-7">
-                                <div class="content text-center">
-                                    <div class="logo"><img src="admin/img/DDO.png" alt="" width="250" height="200"> </div>
-                                    <p><b>The leading computer parts retailer in Davao Region, Philippines. Our diverse product range consists of proccessors, graphic cards, motherboards, memories, storage and accessories.</b>
+                                <div class="content text-center" style="margin-top: 30%;">
+                                    <!-- <div class="logo"><img src="admin/img/DDO.png" alt="" width="250" height="200"> </div> -->
+                                    <p><i>The leading computer parts retailer in Davao Region, Philippines. Our diverse product range consists of proccessors, graphic cards, motherboards, memories, storage and accessories.</i>
                                     </p>
                                 </div>
                                 

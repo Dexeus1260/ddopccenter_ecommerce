@@ -46,7 +46,7 @@ function login()
         $username = safe_value($con,$_POST['username']);
         $password = safe_value($con,$_POST['password']);
 
-        $query = "select * from admin where username like '$username' and password like '$password'  or email LIKE '$username' and password LIKE '$password' ";
+        $query = "select * from admin where username = '$username' and password = '$password'  or email = '$username' and password = '$password' ";
         $result = mysqli_query($con,$query);
 
         if(mysqli_fetch_assoc($result))
@@ -399,10 +399,10 @@ function u_login()
         // set_message(display_error("ok"));
      
         global $con;
-        $user = safe_value($con,$_POST['username']);
-        $pass = safe_value($con,$_POST['password']);
+        $user = ucfirst($_POST['username']);
+        $pass = $_POST['password'];
 
-        $q = "select * from users where username like '$user' and password like '$pass'  or email LIKE '$user' and password LIKE '$pass' ";
+        $q = "select * from users where username = '$user' and password = '$pass'  or email = '$user' and password = '$pass' ";
         $res = mysqli_query($con,$q);
 
         if(mysqli_fetch_assoc($res))
@@ -422,7 +422,7 @@ function register()
     {
         global $con;
         $fullname = safe_value($con,$_POST['fullname']);
-        $username = safe_value($con,$_POST['username']);
+        $username = ucfirst($_POST['username']);
         $email = safe_value($con,$_POST['email']);
         $address = safe_value($con,$_POST['address']);
         $number = safe_value($con,$_POST['number']);

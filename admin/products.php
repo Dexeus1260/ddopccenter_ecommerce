@@ -6,7 +6,7 @@
           header("location: index.php");
       }
 
-      $prod = admin_prod()
+      $prod = admin_prod();
       
 ?>
    
